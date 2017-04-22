@@ -2,6 +2,7 @@ extends Node
 
 const DIRS = preload("res://definitions/directions.gd")
 const ITEM_TYPE = preload("res://definitions/item_enums.gd")
+const SCORE = preload("res://definitions/score.gd")
 const RANGE_AREA = preload("res://objects/player/range_area.tscn")
 
 var player_node #Reference to the player
@@ -23,7 +24,8 @@ var nearby_bodies = [] #Number of players or monsters inside this player range_a
 var nearby_items = [] #Number of items inside this player item_area
 var on_cooldown = 0 #Seconds the player can't make any action besides walking
 
-
+var fans = 10 + int(100 * randf())
+var popularity = fans + 10 + int(50 * randf())
 
 #PRIMITIVE CLASSES
 class Action:
@@ -63,11 +65,14 @@ class Move:
 class Attack:
 	extends Action
 	var target
-	func _init(_target).(3):
+	var attacker
+	func _init(_attacker, _target).(3):
 		target = _target
+		attacker = _attacker
+		attacker.popularity += SCORE.ATTACK_SCORE
 	func act(player, ai):
 		print("attacking")
-		target.get_node('AI').take_damage(ai.power)
+		target.get_node('AI').take_damage(attacker, ai.power)
 
 #Pickup a given item and equip/hold it
 class Pickup:
@@ -114,7 +119,7 @@ func tries_to_pickup_nearby_items(ai):
 func tries_to_attack_nearby_bodies(ai):
 	if ai.nearby_bodies.size() > 0 and ai.on_cooldown <= 0:
 		var random_body = ai.nearby_bodies[randi()%ai.nearby_bodies.size()]
-		return Attack.new(random_body)
+		return Attack.new(self, random_body)
 
 #Player heals itself if it has <= 'hp' of health left and has a healthpack
 func tries_to_heal_if_dying(ai, hp):
@@ -177,9 +182,6 @@ func _fixed_process(delta):
 	if not player_node.get_node('range_area'):
 		create_new_range(default_unarmed_range)
 	
-	#Keep player on the map
-	limit_movement()
-	
 	#Update cooldown
 	self.on_cooldown = max(self.on_cooldown-delta, 0)
 	
@@ -187,17 +189,6 @@ func _fixed_process(delta):
 	var action = cur_objective.think_action(player_node, self)
 	action.act(player_node, self)
 	self.on_cooldown += action.cooldown
-
-#Limit player position to the map. TODO: change to map boundaries
-func limit_movement():
-	if player_node.get_pos().x < 0:
-		player_node.set_pos(Vector2(200*randf(), 150*randf()))
-	if player_node.get_pos().x > 800:
-		player_node.set_pos(Vector2(200*randf(), 150*randf()))
-	if player_node.get_pos().y < 0:
-		player_node.set_pos(Vector2(200*randf(), 150*randf()))
-	if player_node.get_pos().y > 600:
-		player_node.set_pos(Vector2(200*randf(), 150*randf()))
 
 #Creates a new range_area with radius 'r'. Removes previously range_area
 func create_new_range(r):
@@ -256,7 +247,7 @@ func leave_item(body):
 			count += 1
 
 #Make player take 'd' damage and checks for death
-func take_damage(d):
+func take_damage(attacker, d):
 	var old_damage_taken = self.damage_taken
 	self.damage_taken += d
 	
@@ -266,6 +257,7 @@ func take_damage(d):
 	tween.start()
 	
 	if self.damage_taken >= self.max_life:
+		attacker.fans += SCORE.KILL_SCORE
 		self.kill()
 
 #Make player drop current weapon
