@@ -11,6 +11,10 @@ onready var focused = false
 onready var grabbed = false
 onready var diff = Vector2(0, 0)
 
+const NEIGHBORS = [
+	[Vector2(0,1), Vector2(0,-1), Vector2(1,0), Vector2(-1,0), Vector2(-1,-1), Vector2(-1,1)],
+	[Vector2(0,1), Vector2(0,-1), Vector2(1,0), Vector2(-1,0), Vector2(1,1), Vector2(1,-1)]
+]
 
 func _ready():
 	for tile in get_used_cells():
@@ -23,6 +27,23 @@ func _fixed_process(delta):
 		diff = mouse_pos - new_mouse_pos
 		self.set_pos(self.get_pos() + diff)
 	new_mouse_pos = get_viewport().get_mouse_pos()
+
+func trace_border():
+	var visited = {}
+	var border = []
+	var queue = []
+	queue.append(get_used_cells()[0])
+	while !queue.empty():
+		var tile = queue.back()
+		queue.pop_back()
+		if not visited.has(tile):
+			visited[tile] = true
+			if get_cellv(tile) == -1:
+				border.append(tile)
+			else:
+				for offset in NEIGHBORS[int(tile.y) % 2]:
+					queue.append(tile + offset)
+	return border
 
 func grab():
 	grabbed = true
