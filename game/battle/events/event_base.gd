@@ -17,9 +17,9 @@ func _choose():
 
 func _use(pos, zone):
 	queue_free()
-	print(pos)
 	if zone != null:
-		print("zone: %s" % zone.get_name())
+		for player in self.map.players_in_zone(zone):
+			player.get_node("AI").heal(30)
 
 func _ready():
 	assert(self.map != null)

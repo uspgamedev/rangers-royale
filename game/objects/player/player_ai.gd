@@ -229,19 +229,6 @@ func take_damage(d):
 	if self.damage_taken >= self.max_life:
 		self.kill()
 
-#Make player heal 'd' damage 
-func heal(d):
-	var old_damage_taken = self.damage_taken
-	self.damage_taken = max(self.damage_taken - d, 0)
-	
-	#Update lifebar with tween
-	var tween = player_info.get_node('lifebar/change_life_tween')
-	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", old_damage_taken, (max(0,max_life - damage_taken)), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
-	
-	if self.damage_taken >= self.max_life:
-		self.kill()
-
 #Make player drop current weapon
 func drop_weapon():
 	if not self.weapon_equipped:
@@ -251,6 +238,15 @@ func drop_weapon():
 	self.weapon_equipped = null
 	self.power = self.default_unarmed_power
 	self.create_new_range(default_unarmed_range)
+
+#Heal player
+func heal(h):
+	self.damage_taken = max(0, self.damage_taken - h)
+	#Update lifebar with tween
+	var tween = player_info.get_node('lifebar/change_life_tween')
+	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", (max_life-damage_taken-h), \
+								max_life - damage_taken, .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
 
 #Handle player death
 func kill():
