@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://objects/body.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/item/sword.tex" type="Texture" id=2]
-[ext_resource path="res://objects/item/info.gd" type="Script" id=3]
 
 [node name="Item" instance=ExtResource( 1 )]
 
@@ -14,7 +13,5 @@ collision/mask = 4
 texture = ExtResource( 2 )
 
 [node name="Info" type="Node" parent="."]
-
-script/script = ExtResource( 3 )
 
 
