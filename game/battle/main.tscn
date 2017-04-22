@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://battle/zones/zone_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://battle/zone_grid.gd" type="Script" id=2]
 [ext_resource path="res://battle/zones/field_A.tscn" type="PackedScene" id=3]
 [ext_resource path="res://battle/zones/forest_A.tscn" type="PackedScene" id=4]
-[ext_resource path="res://input/mouse_scroll.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://input/mouse_scroll.tscn" type="PackedScene" id=6]
 
 [node name="Royale" type="Control"]
 
@@ -43,19 +44,23 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Zone" parent="Map/Zones" instance=ExtResource( 3 )]
+[node name="Zone1" parent="Map/Zones" instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 708, 46 )
 transform/scale = Vector2( 0.5, 0.5 )
 
-[node name="Zone 2" parent="Map/Zones" instance=ExtResource( 4 )]
+[node name="Zone2" parent="Map/Zones" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 740, 160 )
 transform/scale = Vector2( 0.5, 0.5 )
 
 [node name="Players" type="Node2D" parent="Map"]
 
-[node name="Camera" parent="Map" instance=ExtResource( 5 )]
+[node name="Player1" parent="Map/Players" instance=ExtResource( 5 )]
+
+[node name="Player2" parent="Map/Players" instance=ExtResource( 5 )]
+
+[node name="Camera" parent="Map" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 400, 300 )
 

@@ -5,6 +5,9 @@
 
 [node name="Player" instance=ExtResource( 1 )]
 
+collision/layers = 2
+collision/mask = 2
+
 [node name="AI" type="Node" parent="."]
 
 script/script = ExtResource( 2 )

@@ -6,7 +6,7 @@ const RANGE_AREA = preload("res://objects/player/range_area.tscn")
 var player_node #Reference to the player
 var max_life = 30 #Player maxlife
 var damage_taken = 0 #Damage taken by player
-var power = 10 #Damage player inflicts when attacking
+var power = 30e-2 * randf() #Damage player inflicts when attacking
 var nearby_bodies = [] #Number of players or monsters inside this player range_area
 
 #PRIMITIVE CLASSES
@@ -47,7 +47,7 @@ class Attack:
 	func _init(_target):
 		target = _target
 	func act(player, ai):
-		target.take_tamage(ai.power)
+		target.get_node('AI').take_damage(ai.power)
 
 #OBJECTIVES
 
@@ -81,13 +81,25 @@ func _ready():
 	randomize()
 	set_fixed_process(true)
 	player_node = get_parent()
-	create_new_range(10)
-	player_node.set_pos(Vector2(300,300))
+	player_node.set_pos(Vector2(400*randf(), 300*randf()))
+	create_new_range(100 + 50*randf())
 	
 func _fixed_process(delta):
 	#Make one action of the current objective
+	limit_movement()
+	get_node('range_area').set_pos(player_node.get_pos())
 	var action = cur_objective.think_action(player_node, self)
 	action.act(player_node, self)
+
+func limit_movement():
+	if player_node.get_pos().x < 0:
+		player_node.set_pos(Vector2(200*randf(), 150*randf()))
+	if player_node.get_pos().x > 800:
+		player_node.set_pos(Vector2(200*randf(), 150*randf()))
+	if player_node.get_pos().y < 0:
+		player_node.set_pos(Vector2(200*randf(), 150*randf()))
+	if player_node.get_pos().y > 600:
+		player_node.set_pos(Vector2(200*randf(), 150*randf()))
 
 #Creates a new range_area with radius 'r'. Removes previously range_area
 func create_new_range(r):
@@ -104,20 +116,22 @@ func create_new_range(r):
 	self.nearby_bodies.clear() #Clear nearby players
 	var area = RANGE_AREA.instance()
 	area.set_radius(r)
+	area.set_pos(player_node.get_pos())
 	self.add_child(area) #Add new area_range
-	area.connect("body_enter", self, "enter_neighbour")
-	area.connect("body_exit", self, "leave_neighbour")
+	area.connect("body_enter", self, "enter_neighbor")
+	area.connect("area_enter", self, "area_neighbor")
+	area.connect("body_exit", self, "leave_neighbor")
 
 #Add a body to nearby_bodies array
 #Called when a new body enters the player range_area
-func enter_neighbour(body):
+func enter_neighbor(body):
 	if body == player_node:
 		return
 	nearby_bodies.append(body) #For now only adds, but needs to check the body type
 
 #Removes a body from nearby_bodies array
 #Called when a body leaves the player range_area
-func leave_neighbour(body):
+func leave_neighbor(body):
 	var count = 0
 	for b in nearby_bodies:
 		if b == body:
@@ -132,4 +146,4 @@ func take_damage(d):
 
 #Handle player death
 func kill():
-	pass
+	player_node.queue_free()
