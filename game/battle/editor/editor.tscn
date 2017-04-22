@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://battle/zones/zone_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://battle/zones/basic_zone.gd" type="Script" id=2]
+[ext_resource path="res://battle/zones/field_A.tscn" type="PackedScene" id=3]
+[ext_resource path="res://battle/zones/forest_A.tscn" type="PackedScene" id=4]
+[ext_resource path="res://input/mouse_scroll.tscn" type="PackedScene" id=5]
+
+[node name="Zone" type="TileMap"]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell/size = Vector2( 64, 48 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 0
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray(  )
+script/script = ExtResource( 2 )
+stealth_bonus = 0
+friction = 0
+armor = 0
+
+[node name="FieldA" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 712, 33 )
+transform/scale = Vector2( 0.5, 0.5 )
+
+[node name="ForestA" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 760, 150 )
+transform/scale = Vector2( 0.5, 0.5 )
+
+[node name="Camera" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 400, 300 )
+drag_margin/h_enabled = false
+drag_margin/v_enabled = false
+
+

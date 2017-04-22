@@ -16,3 +16,4 @@ func focus():
 
 func unfocus():
 	animation.play("unfocused")
+
