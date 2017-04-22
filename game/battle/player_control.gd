@@ -30,6 +30,6 @@ func get_player_at(point):
 	point = screen_to_map(point)
 	var space = get_world_2d().get_direct_space_state()
 	for coll in space.intersect_point(point):
-		if coll.collider extends KinematicBody2D and coll.collider.get_node("AI") != null:
-			return coll.collider
+		if coll.collider.get_name() == "InfoHover":
+			return coll.collider.get_parent()
 	return null
