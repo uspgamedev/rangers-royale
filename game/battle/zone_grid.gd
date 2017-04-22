@@ -1,3 +1,4 @@
+# This file may be deprecated
 extends TileMap
 
 onready var camera = get_node('Camera')
