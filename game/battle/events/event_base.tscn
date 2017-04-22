@@ -10,7 +10,7 @@ atlas = ExtResource( 2 )
 region = Rect2( 40, 0, 40, 40 )
 margin = Rect2( 0, 0, 0, 0 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=5]
 
 atlas = ExtResource( 2 )
 region = Rect2( 40, 0, 40, 40 )
@@ -37,7 +37,7 @@ enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 1 )
 textures/pressed = SubResource( 2 )
-textures/hover = SubResource( 3 )
+textures/hover = SubResource( 5 )
 textures/focused = SubResource( 4 )
 params/resize_mode = 0
 params/stretch_mode = 0
