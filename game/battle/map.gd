@@ -1,13 +1,18 @@
 extends Node2D
 
+const DROP = preload("res://battle/map/drop.tscn")
+
 onready var zones = get_node("Zones")
 onready var items = get_node("Items")
 onready var players = get_node("Players")
 
-func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
+func drop_item(item, pos):
+	var drop = DROP.instance()
+	drop.item = item
+	drop.target_pos = pos
+	add_child(drop)
+	yield(drop, "item_dropped")
+	items.add_child(item)
 
 func players_in_zone(zone):
 	var result = []
