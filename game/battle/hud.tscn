@@ -1,0 +1,226 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://battle/events/medical-pack.tex" type="Texture" id=1]
+
+[node name="HUD" type="CanvasLayer"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="Panel" type="Panel" parent="."]
+
+anchor/left = 3
+anchor/right = 3
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 200.0
+margin/top = 20.0
+margin/right = -200.0
+margin/bottom = 60.0
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 4.0
+margin/right = 4.0
+margin/bottom = 4.0
+columns = 11
+
+[node name="TextureButton" type="TextureButton" parent="Panel/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 32.0
+margin/bottom = 32.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="TextureButton1" type="TextureButton" parent="Panel/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 36.0
+margin/top = 0.0
+margin/right = 68.0
+margin/bottom = 32.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="TextureButton2" type="TextureButton" parent="Panel/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 72.0
+margin/top = 0.0
+margin/right = 104.0
+margin/bottom = 32.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="TextureButton3" type="TextureButton" parent="Panel/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 108.0
+margin/top = 0.0
+margin/right = 140.0
+margin/bottom = 32.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="TextureButton4" type="TextureButton" parent="Panel/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 144.0
+margin/top = 0.0
+margin/right = 176.0
+margin/bottom = 32.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="TextureButton5" type="TextureButton" parent="Panel/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 180.0
+margin/top = 0.0
+margin/right = 212.0
+margin/bottom = 32.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="TextureButton6" type="TextureButton" parent="Panel/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 216.0
+margin/top = 0.0
+margin/right = 248.0
+margin/bottom = 32.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="TextureButton7" type="TextureButton" parent="Panel/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 252.0
+margin/top = 0.0
+margin/right = 284.0
+margin/bottom = 32.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="TextureButton8" type="TextureButton" parent="Panel/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 288.0
+margin/top = 0.0
+margin/right = 320.0
+margin/bottom = 32.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="TextureButton9" type="TextureButton" parent="Panel/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 324.0
+margin/top = 0.0
+margin/right = 356.0
+margin/bottom = 32.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="TextureButton10" type="TextureButton" parent="Panel/GridContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 360.0
+margin/top = 0.0
+margin/right = 392.0
+margin/bottom = 32.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 1 )
+params/resize_mode = 0
+params/stretch_mode = 0
+
+

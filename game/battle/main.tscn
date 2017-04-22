@@ -1,13 +1,8 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://battle/mya.ogg" type="AudioStream" id=1]
-[ext_resource path="res://battle/zones/zone_tileset.tres" type="TileSet" id=2]
-[ext_resource path="res://battle/zone_control.gd" type="Script" id=3]
-[ext_resource path="res://battle/zones/field_A.tscn" type="PackedScene" id=4]
-[ext_resource path="res://battle/zones/forest_A.tscn" type="PackedScene" id=5]
-[ext_resource path="res://battle/zones/volcano_A.tscn" type="PackedScene" id=6]
-[ext_resource path="res://objects/player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://input/mouse_scroll.tscn" type="PackedScene" id=8]
+[ext_resource path="res://battle/map.tscn" type="PackedScene" id=2]
+[ext_resource path="res://battle/hud.tscn" type="PackedScene" id=3]
 
 [node name="Royale" type="Control"]
 
@@ -33,62 +28,8 @@ stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
 
-[node name="Map" type="Node2D" parent="."]
+[node name="Map" parent="." instance=ExtResource( 2 )]
 
-[node name="Zones" type="TileMap" parent="Map"]
-
-mode = 0
-tile_set = ExtResource( 2 )
-cell/size = Vector2( 64, 48 )
-cell/quadrant_size = 16
-cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-cell/half_offset = 0
-cell/tile_origin = 1
-cell/y_sort = false
-collision/use_kinematic = false
-collision/friction = 1.0
-collision/bounce = 0.0
-collision/layers = 3
-collision/mask = 1
-occluder/light_mask = 1
-tile_data = IntArray(  )
-script/script = ExtResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Zone1" parent="Map/Zones" instance=ExtResource( 4 )]
-
-transform/pos = Vector2( 96, 144 )
-
-[node name="Zone2" parent="Map/Zones" instance=ExtResource( 5 )]
-
-transform/pos = Vector2( 128, 288 )
-
-[node name="Zone" parent="Map/Zones" instance=ExtResource( 5 )]
-
-transform/pos = Vector2( 192, 384 )
-
-[node name="Zone 2" parent="Map/Zones" instance=ExtResource( 4 )]
-
-transform/pos = Vector2( 256, 288 )
-
-[node name="Zone 3" parent="Map/Zones" instance=ExtResource( 6 )]
-
-transform/pos = Vector2( 288, 240 )
-
-[node name="Players" type="Node2D" parent="Map"]
-
-[node name="Player1" parent="Map/Players" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 304.26, 400.458 )
-
-[node name="Player2" parent="Map/Players" instance=ExtResource( 7 )]
-
-transform/pos = Vector2( 96.0715, 152.269 )
-
-[node name="Camera" parent="Map" instance=ExtResource( 8 )]
-
-transform/pos = Vector2( 400, 300 )
+[node name="HUD" parent="." instance=ExtResource( 3 )]
 
 
