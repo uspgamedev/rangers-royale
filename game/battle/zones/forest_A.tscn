@@ -4,6 +4,6 @@
 
 [node name="Zone" instance=ExtResource( 1 )]
 
-tile_data = IntArray( -1, 7, 65535, 7, 0, 7 )
+tile_data = IntArray( -1, 7, 65535, 8, 0, 9 )
 
 
