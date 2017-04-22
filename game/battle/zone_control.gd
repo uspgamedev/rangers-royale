@@ -8,19 +8,11 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_click"):
-		if zone == null:
-			zone = get_zone_at(event.pos + camera.get_pos() - OS.get_window_size()/2, null)
-			if zone:
-				zone.focus()
-				zone.grab()
-				zone.set_scale(Vector2(1, 1))
-				self.move_child(zone, get_child_count() - 1)
-		else:
-			var target = get_zone_at(event.pos + camera.get_pos() - OS.get_window_size()/2, zone)
-			if target == null:
-				zone.unfocus()
-				zone.release()
-				zone = null
+		for zone in get_children():
+			zone.unfocus()
+		self.zone = get_zone_at(event.pos + camera.get_pos() - OS.get_window_size()/2, null)
+		if self.zone:
+			self.zone.focus()
 
 func get_zone_at(point, zone):
 	var space = get_world_2d().get_direct_space_state()

@@ -125,18 +125,20 @@ func create_new_range(r):
 #Add a body to nearby_bodies array
 #Called when a new body enters the player range_area
 func enter_neighbor(body):
-	if body == player_node:
-		return
-	nearby_bodies.append(body) #For now only adds, but needs to check the body type
+	if body extends KinematicBody2D:
+		if body == player_node:
+			return
+		nearby_bodies.append(body) #For now only adds, but needs to check the body type
 
 #Removes a body from nearby_bodies array
 #Called when a body leaves the player range_area
 func leave_neighbor(body):
-	var count = 0
-	for b in nearby_bodies:
-		if b == body:
-			nearby_bodies.remove(count) #For now only removes, but needs to check the body type
-		count += 1
+	if body extends KinematicBody2D:
+		var count = 0
+		for b in nearby_bodies:
+			if b == body:
+				nearby_bodies.remove(count) #For now only removes, but needs to check the body type
+			count += 1
 
 #Make player take 'd' damage and checks for death
 func take_damage(d):

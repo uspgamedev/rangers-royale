@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://battle/zones/zone_tileset.tres" type="TileSet" id=1]
-[ext_resource path="res://battle/zone_grid.gd" type="Script" id=2]
+[ext_resource path="res://battle/zone_control.gd" type="Script" id=2]
 [ext_resource path="res://battle/zones/field_A.tscn" type="PackedScene" id=3]
 [ext_resource path="res://battle/zones/forest_A.tscn" type="PackedScene" id=4]
 [ext_resource path="res://objects/player.tscn" type="PackedScene" id=5]
@@ -46,13 +46,11 @@ __meta__ = {
 
 [node name="Zone1" parent="Map/Zones" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 708, 46 )
-transform/scale = Vector2( 0.5, 0.5 )
+transform/pos = Vector2( 178, 116 )
 
 [node name="Zone2" parent="Map/Zones" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 740, 160 )
-transform/scale = Vector2( 0.5, 0.5 )
+transform/pos = Vector2( 210, 260 )
 
 [node name="Players" type="Node2D" parent="Map"]
 
