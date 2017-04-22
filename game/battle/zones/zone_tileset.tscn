@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://battle/zones/hexagono.tex" type="Texture" id=1]
 [ext_resource path="res://battle/zones/field_tile1.tex" type="Texture" id=2]
@@ -7,9 +7,12 @@
 [ext_resource path="res://battle/zones/volcano_tile1.tex" type="Texture" id=5]
 [ext_resource path="res://battle/zones/volcano_tile2.tex" type="Texture" id=6]
 [ext_resource path="res://battle/zones/volcano_tile3.tex" type="Texture" id=7]
-[ext_resource path="res://battle/zones/lake_tile1.tex" type="Texture" id=8]
-[ext_resource path="res://battle/zones/lake_tile2.tex" type="Texture" id=9]
-[ext_resource path="res://battle/zones/lake_tile3.tex" type="Texture" id=10]
+[ext_resource path="res://battle/zones/forest_tile1.tex" type="Texture" id=8]
+[ext_resource path="res://battle/zones/forest_tile2.tex" type="Texture" id=9]
+[ext_resource path="res://battle/zones/forest_tile3.tex" type="Texture" id=10]
+[ext_resource path="res://battle/zones/lake_tile1.tex" type="Texture" id=11]
+[ext_resource path="res://battle/zones/lake_tile2.tex" type="Texture" id=12]
+[ext_resource path="res://battle/zones/lake_tile3.tex" type="Texture" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -20,6 +23,7 @@ points = Vector2Array( 0, -32, 32, -16, 32, 16, 0, 32, -32, 16, -32, -16 )
 
 [node name="None" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 71.2088, 45.4263 )
 texture = ExtResource( 1 )
 
@@ -44,6 +48,7 @@ _update_shape_index = 0
 
 [node name="Field1" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 272.558, 238.181 )
 texture = ExtResource( 2 )
 
@@ -68,6 +73,7 @@ _update_shape_index = 0
 
 [node name="Field2" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 161.785, 289.495 )
 texture = ExtResource( 3 )
 
@@ -92,6 +98,7 @@ _update_shape_index = 0
 
 [node name="Field3" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 247.308, 331.849 )
 texture = ExtResource( 4 )
 
@@ -116,6 +123,7 @@ _update_shape_index = 0
 
 [node name="Vulcan1" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 288.783, 61.0454 )
 texture = ExtResource( 5 )
 
@@ -140,6 +148,7 @@ _update_shape_index = 0
 
 [node name="Vulcan2" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 409.33, 73.263 )
 texture = ExtResource( 6 )
 
@@ -164,6 +173,7 @@ _update_shape_index = 0
 
 [node name="Vulcan3" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 175.567, 74.892 )
 texture = ExtResource( 7 )
 
@@ -186,13 +196,13 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Forest" type="Sprite" parent="."]
+[node name="Forest1" type="Sprite" parent="."]
 
-transform/pos = Vector2( 324.123, 155.923 )
-texture = ExtResource( 1 )
-modulate = Color( 0.0469055, 0.414062, 0.0870633, 1 )
+editor/display_folded = true
+transform/pos = Vector2( 476.435, 191.761 )
+texture = ExtResource( 8 )
 
-[node name="StaticBody2D1" type="StaticBody2D" parent="Forest"]
+[node name="StaticBody2D1" type="StaticBody2D" parent="Forest1"]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -205,7 +215,57 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Forest/StaticBody2D1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Forest1/StaticBody2D1"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Forest2" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 393.356, 256.107 )
+texture = ExtResource( 9 )
+
+[node name="StaticBody2D1" type="StaticBody2D" parent="Forest2"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Forest2/StaticBody2D1"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Forest3" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 324.123, 155.923 )
+texture = ExtResource( 10 )
+
+[node name="StaticBody2D1" type="StaticBody2D" parent="Forest3"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Forest3/StaticBody2D1"]
 
 shape = SubResource( 1 )
 trigger = false
@@ -213,8 +273,9 @@ _update_shape_index = 0
 
 [node name="Lake1" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 61.8121, 217.717 )
-texture = ExtResource( 8 )
+texture = ExtResource( 11 )
 
 [node name="StaticBody2D1" type="StaticBody2D" parent="Lake1"]
 
@@ -237,8 +298,9 @@ _update_shape_index = 0
 
 [node name="Lake2" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 65.8846, 315.458 )
-texture = ExtResource( 9 )
+texture = ExtResource( 12 )
 
 [node name="StaticBody2D1" type="StaticBody2D" parent="Lake2"]
 
@@ -261,8 +323,9 @@ _update_shape_index = 0
 
 [node name="Lake3" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 65.0701, 133.823 )
-texture = ExtResource( 10 )
+texture = ExtResource( 13 )
 
 [node name="StaticBody2D1" type="StaticBody2D" parent="Lake3"]
 
@@ -285,6 +348,7 @@ _update_shape_index = 0
 
 [node name="Ruin" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 179.25, 189.072 )
 texture = ExtResource( 1 )
 modulate = Color( 0.296875, 0.2471, 0.141479, 1 )
