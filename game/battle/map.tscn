@@ -7,7 +7,7 @@
 [ext_resource path="res://battle/zones/forest_A.tscn" type="PackedScene" id=5]
 [ext_resource path="res://battle/zones/volcano_A.tscn" type="PackedScene" id=6]
 [ext_resource path="res://battle/zones/lake_A.tscn" type="PackedScene" id=7]
-[ext_resource path="res://objects/item.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/item/sword.tscn" type="PackedScene" id=8]
 [ext_resource path="res://battle/player_control.gd" type="Script" id=9]
 [ext_resource path="res://objects/player.tscn" type="PackedScene" id=10]
 
@@ -65,9 +65,9 @@ transform/pos = Vector2( 448, 384 )
 
 [node name="Items" type="Node2D" parent="."]
 
-[node name="Item" parent="Items" instance=ExtResource( 8 )]
+[node name="Sword" parent="Items" instance=ExtResource( 8 )]
 
-transform/pos = Vector2( 319.999, 174 )
+transform/pos = Vector2( 178, 192 )
 
 [node name="Players" type="Node2D" parent="."]
 

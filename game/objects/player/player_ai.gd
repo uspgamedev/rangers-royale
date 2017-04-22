@@ -1,21 +1,29 @@
 extends Node
 
 const DIRS = preload("res://definitions/directions.gd")
+const ITEM_TYPE = preload("res://definitions/item_enums.gd")
 const RANGE_AREA = preload("res://objects/player/range_area.tscn")
 
 var player_node #Reference to the player
 var player_info #Reference to player info panel
 
+var default_unarmed_range = 100 + 50*randf() #Ranged of "unarmed weapon"
+var default_unarmed_power = 10 + randf()*5   #Power of "unarmed weapon"
+
 var max_life = 30 #Player maxlife
 var damage_taken = 0 #Damage taken by player
 var name = "dummy" #Name of player
 var afiliation = randi()%2 #Number of afiliation
-var power = 10 + randf()*5 #Damage player inflicts when attacking
+var power = default_unarmed_power #Damage player inflicts when attacking
+var weapon_equipped #Weapon player is holding
+var armor_equipped #Armor player is holding
+var item_holding #Item player is holding
+
 var nearby_bodies = [] #Number of players or monsters inside this player range_area
 var nearby_items = [] #Number of items inside this player item_area
 var on_cooldown = 0 #Seconds the player can't make any action besides walking
 
-var default_unarmed_range = 100 + 50*randf() #Ranged of "unarmed weapon"
+
 
 #PRIMITIVE CLASSES
 class Action:
@@ -61,6 +69,24 @@ class Attack:
 		print("attacking")
 		target.get_node('AI').take_damage(ai.power)
 
+#Pickup a given item and equip/hold it
+class Pickup:
+	extends Action
+	var item
+	func _init(_item).(2):
+		item = _item
+	func act(player, ai):
+		print("picking item up")
+		var item_info = item.get_node("info")
+		if item_info.type == ITEM_TYPE.WEAPON:
+			#Drop previously equipped weapon, if it exists
+			if ai.weapon_equipped:
+				ai.drop_weapon()
+			ai.weapon_equipped = item
+			ai.power = item_info.power
+			ai.create_new_range = item_info.range_radius
+		item.get_parent().remove_child(item) #Remove item from the map
+
 #OBJECTIVES
 
 #Moves randomly and if possible, tries to attack nearby players
@@ -70,6 +96,11 @@ class Move_Random_And_Attack:
 	func _init():
 		dir = DIRS.RIGHT+DIRS.DOWN
 	func think_action(player, ai):
+		#First tries to pickup nearby objects
+		if ai.nearby_items.size() > 0 and ai.on_cooldown <= 0:
+			var random_body = ai.nearby_items[randi()%ai.nearby_items.size()]
+			return Pickup.new(random_body)
+			
 		#Attack nearby bodies if possible
 		if ai.nearby_bodies.size() > 0 and ai.on_cooldown <= 0:
 			var random_body = ai.nearby_bodies[randi()%ai.nearby_bodies.size()]
@@ -187,15 +218,39 @@ func leave_item(body):
 
 #Make player take 'd' damage and checks for death
 func take_damage(d):
+	var old_damage_taken = self.damage_taken
 	self.damage_taken += d
 	
 	#Update lifebar with tween
 	var tween = player_info.get_node('lifebar/change_life_tween')
-	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", (max_life-damage_taken+d), (max(0,max_life - damage_taken)), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", old_damage_taken, (max(0,max_life - damage_taken)), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	
 	if self.damage_taken >= self.max_life:
 		self.kill()
+
+#Make player heal 'd' damage 
+func heal(d):
+	var old_damage_taken = self.damage_taken
+	self.damage_taken = max(self.damage_taken - d, 0)
+	
+	#Update lifebar with tween
+	var tween = player_info.get_node('lifebar/change_life_tween')
+	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", old_damage_taken, (max(0,max_life - damage_taken)), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	
+	if self.damage_taken >= self.max_life:
+		self.kill()
+
+#Make player drop current weapon
+func drop_weapon():
+	if not self.weapon_equipped:
+		return
+	
+	#Set default values for power and range
+	self.weapon_equipped = null
+	self.power = self.default_unarmed_power
+	self.create_new_range(default_unarmed_range)
 
 #Handle player death
 func kill():
