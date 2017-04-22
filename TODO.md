@@ -21,7 +21,7 @@
 
 + [ ] Load from editor
 + [ ] Events @wil
-+ [ ] List of available events
++ [X] Target picker
 + [ ] Reputation
 + [ ] Audience
 
@@ -36,6 +36,12 @@
 #### Players
 
 // AI stuff
+
+#### UI
+
++ [ ] List of available events
++ [ ] News flash banner
++ [ ] Audience meter
 
 ### Items
 
