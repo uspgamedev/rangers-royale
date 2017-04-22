@@ -1,6 +1,6 @@
 extends TileMap
 
-onready var camera = get_node('../Camera')
+onready var camera = get_node('Camera')
 onready var zone = null
 
 func _ready():
