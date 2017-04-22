@@ -118,7 +118,7 @@ func tries_to_attack_nearby_bodies(ai):
 
 #Player heals itself if it has <= 'hp' of health left and has a healthpack
 func tries_to_heal_if_dying(ai, hp):
-	if ai.max_life - ai.damage_taken <= hp and ai.consumable_holding and ai.consumable_holding.get_node("info").name == "med_kit":
+	if ai.max_life - ai.damage_taken <= hp and ai.consumable_holding and ai.consumable_holding.get_node("Info").name == "med_kit":
 		return Activate.new()
 
 #OBJECTIVES
