@@ -81,7 +81,7 @@ func _ready():
 	randomize()
 	set_fixed_process(true)
 	player_node = get_parent()
-	player_node.set_pos(Vector2(400*randf(), 300*randf()))
+	#player_node.set_pos(Vector2(400*randf(), 300*randf()))
 	create_new_range(100 + 50*randf())
 	
 func _fixed_process(delta):

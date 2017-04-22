@@ -35,10 +35,10 @@ cell/y_sort = false
 collision/use_kinematic = false
 collision/friction = 1.0
 collision/bounce = 0.0
-collision/layers = 1
+collision/layers = 3
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray(  )
+tile_data = IntArray( 65536, 0, 65537, 0, 131072, 0, 131074, 0, 131075, 0, 262143, 0, 196611, 0, 262144, 0, 262148, 0, 327680, 0, 327683, 0, 393216, 0, 393219, 0, 458752, 0, 458753, 0, 458754, 0 )
 script/script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
@@ -46,17 +46,21 @@ __meta__ = {
 
 [node name="Zone1" parent="Map/Zones" instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 178, 116 )
+transform/pos = Vector2( 96, 144 )
 
 [node name="Zone2" parent="Map/Zones" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 210, 260 )
+transform/pos = Vector2( 128, 288 )
 
 [node name="Players" type="Node2D" parent="Map"]
 
 [node name="Player1" parent="Map/Players" instance=ExtResource( 5 )]
 
+transform/pos = Vector2( 153.26, 280.458 )
+
 [node name="Player2" parent="Map/Players" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 96.0715, 152.269 )
 
 [node name="Camera" parent="Map" instance=ExtResource( 6 )]
 
