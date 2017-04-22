@@ -17,7 +17,7 @@ var afiliation = randi()%2 #Number of afiliation
 var power = default_unarmed_power #Damage player inflicts when attacking
 var weapon_equipped #Weapon player is holding
 var armor_equipped #Armor player is holding
-var item_holding #Item player is holding
+var consumable_holding #Consumable item player is holding
 
 var nearby_bodies = [] #Number of players or monsters inside this player range_area
 var nearby_items = [] #Number of items inside this player item_area
@@ -80,12 +80,46 @@ class Pickup:
 		var item_info = item.get_node("Info")
 		if item_info.type == ITEM_TYPE.WEAPON:
 			#Drop previously equipped weapon, if it exists
-			if ai.weapon_equipped:
-				ai.drop_weapon()
+			ai.drop_weapon()
+			
 			ai.weapon_equipped = item
 			ai.power = item_info.power
 			ai.create_new_range(item_info.range_radius)
+		elif item_info.type == ITEM_TYPE.CONSUMABLE:
+			#Drop previously consumable its holding, if it exists
+			ai.drop_consumable()
+			
+			ai.consumable_holding = item
 		item.get_parent().remove_child(item) #Remove item from the map
+
+#Activate item player is holding
+class Activate:
+	extends Action
+
+	func _init().(3):
+		pass
+	func act(player, ai):
+		print("activating item")
+		ai.consumable_holding.get_node("Info").activate(player, ai)
+
+#USEFUL OBJECTIVE FUNCTIONS
+
+#Picks a nearby item if possible
+func tries_to_pickup_nearby_items(ai):
+	if ai.nearby_items.size() > 0 and ai.on_cooldown <= 0:
+		var random_body = ai.nearby_items[randi()%ai.nearby_items.size()]
+		return Pickup.new(random_body)
+		
+#Attack a random nearby body if possible
+func tries_to_attack_nearby_bodies(ai):
+	if ai.nearby_bodies.size() > 0 and ai.on_cooldown <= 0:
+		var random_body = ai.nearby_bodies[randi()%ai.nearby_bodies.size()]
+		return Attack.new(random_body)
+
+#Player heals itself if it has <= 'hp' of health left and has a healthpack
+func tries_to_heal_if_dying(ai, hp):
+	if ai.max_life - ai.damage_taken <= hp and ai.consumable_holding and ai.consumable_holding.get_node("info").name == "med_kit":
+		return Activate.new()
 
 #OBJECTIVES
 
@@ -96,15 +130,20 @@ class Default:
 	func _init():
 		dir = DIRS.RIGHT+DIRS.DOWN
 	func think_action(player, ai):
-		#First tries to pickup nearby objects
-		if ai.nearby_items.size() > 0 and ai.on_cooldown <= 0:
-			var random_body = ai.nearby_items[randi()%ai.nearby_items.size()]
-			return Pickup.new(random_body)
-			
-		#Attack nearby bodies if possible
-		if ai.nearby_bodies.size() > 0 and ai.on_cooldown <= 0:
-			var random_body = ai.nearby_bodies[randi()%ai.nearby_bodies.size()]
-			return Attack.new(random_body)
+		var action
+		
+		action = ai.tries_to_heal_if_dying(ai, ai.max_life - 1)
+		if action:
+			return action
+		
+		action = ai.tries_to_pickup_nearby_items(ai)
+		if action:
+			return action
+		
+		action = ai.tries_to_attack_nearby_bodies(ai)
+		if action:
+			return action
+		
 		#Small chance to change direction
 		if randf()<.1:
 			dir = DIRS.NONE
@@ -238,6 +277,14 @@ func drop_weapon():
 	self.weapon_equipped = null
 	self.power = self.default_unarmed_power
 	self.create_new_range(default_unarmed_range)
+
+#Make player drop current consumable
+func drop_consumable():
+	if not self.consumable_holding:
+		return
+	
+	self.consumable_holding = null
+
 
 #Heal player
 func heal(h):
