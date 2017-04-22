@@ -77,20 +77,20 @@ class Pickup:
 		item = _item
 	func act(player, ai):
 		print("picking item up")
-		var item_info = item.get_node("info")
+		var item_info = item.get_node("Info")
 		if item_info.type == ITEM_TYPE.WEAPON:
 			#Drop previously equipped weapon, if it exists
 			if ai.weapon_equipped:
 				ai.drop_weapon()
 			ai.weapon_equipped = item
 			ai.power = item_info.power
-			ai.create_new_range = item_info.range_radius
+			ai.create_new_range(item_info.range_radius)
 		item.get_parent().remove_child(item) #Remove item from the map
 
 #OBJECTIVES
 
 #Moves randomly and if possible, tries to attack nearby players
-class Move_Random_And_Attack:
+class Default:
 	extends Objective
 	var dir
 	func _init():
@@ -118,7 +118,7 @@ class Move_Random_And_Attack:
 				dir += DIRS.DOWN
 		return Move.new(dir)
 
-var cur_objective = Move_Random_And_Attack.new()
+var cur_objective = Default.new()
 
 signal died(player)
 
