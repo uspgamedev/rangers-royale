@@ -20,6 +20,7 @@ func _input(event):
 			if target == null:
 				zone.unfocus()
 				zone.release()
+				
 				zone = null
 
 func get_zone_at(point, zone):

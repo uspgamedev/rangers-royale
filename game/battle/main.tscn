@@ -2,7 +2,7 @@
 
 [ext_resource path="res://battle/main.gd" type="Script" id=1]
 [ext_resource path="res://battle/mya.ogg" type="AudioStream" id=2]
-[ext_resource path="res://battle/map.tscn" type="PackedScene" id=3]
+[ext_resource path="res://battle/map/example.tscn" type="PackedScene" id=3]
 [ext_resource path="res://battle/hud.tscn" type="PackedScene" id=4]
 [ext_resource path="res://battle/zone_picker.tscn" type="PackedScene" id=5]
 
