@@ -3,8 +3,8 @@
 
 ### Tiles
 
-+ [ ] Forest
-+ [ ] Lake
++ [X] Forest
++ [X] Lake
 + [ ] Ruin
 
 ### BGM
@@ -28,7 +28,7 @@
 #### Events
 
 + [ ] Drop weapon
-+ [ ] Drop first aid kit
++ [X] Drop first aid kit
 + [ ] Release monster
 + [ ] Trigger zone effect
 + [ ] Reveal player location
@@ -39,13 +39,13 @@
 
 #### UI
 
-+ [ ] List of available events
++ [X] List of available events
 + [ ] News flash banner
 + [ ] Audience meter
 
 ### Items
 
-+ [ ] Item scene @rica
++ [X] Item scene @rica
 
 ### Map Editor
 
