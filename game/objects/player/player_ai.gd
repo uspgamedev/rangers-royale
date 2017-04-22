@@ -6,13 +6,19 @@ const RANGE_AREA = preload("res://objects/player/range_area.tscn")
 var player_node #Reference to the player
 var max_life = 30 #Player maxlife
 var damage_taken = 0 #Damage taken by player
-var power = 30e-2 * randf() #Damage player inflicts when attacking
+var name = "dummy" #Name of player
+var afiliation = randi()%2 #Number of afiliation
+var power = 10 + randf()*5 #Damage player inflicts when attacking
 var nearby_bodies = [] #Number of players or monsters inside this player range_area
+var on_cooldown = 0 #Seconds the player can't make any action besides walking
+
+var default_unarmed_range = 100 + 50*randf() #Ranged of "unarmed weapon"
 
 #PRIMITIVE CLASSES
 class Action:
-	func _init():
-		pass
+	var cooldown
+	func _init(_cd):
+		cooldown = _cd
 	func act(player, ai):
 		pass
 
@@ -28,6 +34,8 @@ class Objective:
 #Does nothing
 class Idle:
 	extends Action
+	func _init().(0):
+		pass
 	func act(player, ai):
 		pass
 
@@ -35,7 +43,7 @@ class Idle:
 class Move:
 	extends Action
 	var dir
-	func _init(_dir):
+	func _init(_dir).(0):
 		dir = _dir
 	func act(player, ai):
 		player.push_dir(dir)
@@ -44,9 +52,10 @@ class Move:
 class Attack:
 	extends Action
 	var target
-	func _init(_target):
+	func _init(_target).(3):
 		target = _target
 	func act(player, ai):
+		print("attacking")
 		target.get_node('AI').take_damage(ai.power)
 
 #OBJECTIVES
@@ -59,7 +68,7 @@ class Move_Random_And_Attack:
 		dir = DIRS.RIGHT+DIRS.DOWN
 	func think_action(player, ai):
 		#Attack nearby bodies if possible
-		if ai.nearby_bodies.size() > 0:
+		if ai.nearby_bodies.size() > 0 and ai.on_cooldown <= 0:
 			var random_body = ai.nearby_bodies[randi()%ai.nearby_bodies.size()]
 			return Attack.new(random_body)
 		#Small chance to change direction
@@ -81,16 +90,24 @@ func _ready():
 	randomize()
 	set_fixed_process(true)
 	player_node = get_parent()
-	#player_node.set_pos(Vector2(400*randf(), 300*randf()))
-	create_new_range(100 + 50*randf())
 	
 func _fixed_process(delta):
-	#Make one action of the current objective
+	#If player doesn't have a range_area, create an unarmed range area
+	if not player_node.get_node('range_area'):
+		create_new_range(default_unarmed_range)
+	
+	#Keep player on the map
 	limit_movement()
-	get_node('range_area').set_pos(player_node.get_pos())
+	
+	#Update cooldown
+	self.on_cooldown = max(self.on_cooldown-delta, 0)
+	
+	#Make one action of the current objective
 	var action = cur_objective.think_action(player_node, self)
 	action.act(player_node, self)
+	self.on_cooldown += action.cooldown
 
+#Limit player position to the map. TODO: change to map boundaries
 func limit_movement():
 	if player_node.get_pos().x < 0:
 		player_node.set_pos(Vector2(200*randf(), 150*randf()))
@@ -104,22 +121,21 @@ func limit_movement():
 #Creates a new range_area with radius 'r'. Removes previously range_area
 func create_new_range(r):
 	print("creating a new range")
-	var old_range_area
 
-		#Remove previously range_area
-	for child in self.get_children():
-		if child.get_name() == "range_area":
-			old_range_area = child
+	#Remove previously range_area
+	var old_range_area = player_node.get_node('range_area')
 	if old_range_area:
-		self.remove_child(old_range_area)
-
+		player_node.remove_child(old_range_area)
+		yield(old_range_area, 'removed_from_tree')
+	
 	self.nearby_bodies.clear() #Clear nearby players
+	
+	#Create new range_area
 	var area = RANGE_AREA.instance()
 	area.set_radius(r)
-	area.set_pos(player_node.get_pos())
-	self.add_child(area) #Add new area_range
+	area.set_pos(Vector2(0,0))
+	player_node.add_child(area) #Add new area_range
 	area.connect("body_enter", self, "enter_neighbor")
-	area.connect("area_enter", self, "area_neighbor")
 	area.connect("body_exit", self, "leave_neighbor")
 
 #Add a body to nearby_bodies array
