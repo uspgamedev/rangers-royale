@@ -16,7 +16,7 @@ func _ready():
 
 func _input(event):
 	if event.type == InputEvent.MOUSE_MOTION:
-		self.target_pos = event.pos
+		self.target_pos = zones.screen_to_map(event.pos)
 		var zone = zones.get_zone_at(event.pos)
 		if zone != self.focused_zone:
 			if self.focused_zone != null:

@@ -15,10 +15,13 @@ func _ready():
 			set_cellv(get_tile_at(point), -1)
 
 func get_tile_at(pos):
-	return world_to_map(pos + camera.get_pos() - OS.get_window_size()/2)
+	return world_to_map(screen_to_map(pos))
+
+func screen_to_map(point):
+	return point + camera.get_pos() - OS.get_window_size()/2
 
 func get_zone_at(point):
-	point = point + camera.get_pos() - OS.get_window_size()/2
+	point = screen_to_map(point)
 	var space = get_world_2d().get_direct_space_state()
 	for coll in space.intersect_point(point):
 		if coll.collider extends TileMap and coll.collider != self:
