@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.875, 0.249512, 0.249512, 1 )
+light_color = Color( 0.921875, 0.417725, 0.417725, 1 )
+dark_color = Color( 0.691406, 0.329498, 0.329498, 1 )
+border_size = 3
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.156863, 0.109804, 0.203922, 1 )
+light_color = Color( 0.0470588, 0.0313726, 0.0627451, 1 )
+dark_color = Color( 0.0470588, 0.0313726, 0.0627451, 1 )
+border_size = 2
+border_blend = true
+draw_bg = true
+
+[node name="PlayerInfo" type="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 93.0
+margin/bottom = 94.0
+
+[node name="lifebar" type="ProgressBar" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 3.0
+margin/top = 75.0
+margin/right = 90.0
+margin/bottom = 91.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 50.0
+range/exp_edit = false
+range/rounded = false
+percent/visible = false
+
+[node name="change_life_tween" type="Tween" parent="lifebar"]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+

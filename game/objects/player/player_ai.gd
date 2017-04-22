@@ -4,12 +4,15 @@ const DIRS = preload("res://definitions/directions.gd")
 const RANGE_AREA = preload("res://objects/player/range_area.tscn")
 
 var player_node #Reference to the player
+var player_info #Reference to player info panel
+
 var max_life = 30 #Player maxlife
 var damage_taken = 0 #Damage taken by player
 var name = "dummy" #Name of player
 var afiliation = randi()%2 #Number of afiliation
 var power = 10 + randf()*5 #Damage player inflicts when attacking
 var nearby_bodies = [] #Number of players or monsters inside this player range_area
+var nearby_items = [] #Number of items inside this player item_area
 var on_cooldown = 0 #Seconds the player can't make any action besides walking
 
 var default_unarmed_range = 100 + 50*randf() #Ranged of "unarmed weapon"
@@ -90,6 +93,12 @@ func _ready():
 	randomize()
 	set_fixed_process(true)
 	player_node = get_parent()
+	player_info = player_node.get_node("player_info")
+	
+	#Setup lifebar
+	var lifebar = player_info.get_node('lifebar')
+	lifebar.set_max(max_life)
+	lifebar.set_value(max_life)
 	
 func _fixed_process(delta):
 	#If player doesn't have a range_area, create an unarmed range area
@@ -156,9 +165,33 @@ func leave_neighbor(body):
 				nearby_bodies.remove(count) #For now only removes, but needs to check the body type
 			count += 1
 
+#Add an item to nearby_items array
+#Called when a new item enters the player item_area
+func enter_item(body):
+	if body extends KinematicBody2D:
+		print("entered item")
+		nearby_items.append(body) #For now only adds, but needs to check the body type
+
+#Removes a item from nearby_bodies array
+#Called when a body leaves the player range_area
+func leave_item(body):
+	if body extends KinematicBody2D:
+		var count = 0
+		for item in nearby_items:
+			if item == body:
+				print("leaving item")
+				nearby_items.remove(count) #For now only removes, but needs to check the body type
+			count += 1
+
 #Make player take 'd' damage and checks for death
 func take_damage(d):
 	self.damage_taken += d
+	
+	#Update lifebar with tween
+	var tween = player_info.get_node('lifebar/change_life_tween')
+	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", (max_life-damage_taken+d), (max(0,max_life - damage_taken)), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	
 	if self.damage_taken >= self.max_life:
 		self.kill()
 
