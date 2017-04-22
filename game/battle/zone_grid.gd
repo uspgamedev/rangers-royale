@@ -1,16 +1,6 @@
 extends TileMap
 
 func _ready():
-	var zone = get_child(0)
-	var pos = zone.get_pos()
-	var tile = world_to_map(pos)
-	print("%d %d" % [tile.x, tile.y])
-	pos = map_to_world(tile)
-	print("%d %d" % [pos.x, pos.y])
-	pos = pos - zone.get_pos()
-	tile = zone.world_to_map(pos)
-	print("%d %d" % [pos.x, pos.y])
-	print("%d %d" % [tile.x, tile.y])
 	set_process_input(true)
 
 func _input(event):
