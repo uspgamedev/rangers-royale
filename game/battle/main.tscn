@@ -75,7 +75,7 @@ transform/pos = Vector2( 256, 288 )
 
 [node name="Zone 3" parent="Map/Zones" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 256, 192 )
+transform/pos = Vector2( 288, 240 )
 
 [node name="Players" type="Node2D" parent="Map"]
 
