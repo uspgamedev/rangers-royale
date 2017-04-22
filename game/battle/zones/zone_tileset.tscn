@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://battle/zones/hexagono.tex" type="Texture" id=1]
 [ext_resource path="res://battle/zones/field_tile1.tex" type="Texture" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://battle/zones/volcano_tile1.tex" type="Texture" id=5]
 [ext_resource path="res://battle/zones/volcano_tile2.tex" type="Texture" id=6]
 [ext_resource path="res://battle/zones/volcano_tile3.tex" type="Texture" id=7]
+[ext_resource path="res://battle/zones/lake_tile1.tex" type="Texture" id=8]
+[ext_resource path="res://battle/zones/lake_tile2.tex" type="Texture" id=9]
+[ext_resource path="res://battle/zones/lake_tile3.tex" type="Texture" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -208,13 +211,12 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Lake" type="Sprite" parent="."]
+[node name="Lake1" type="Sprite" parent="."]
 
-transform/pos = Vector2( 65.0701, 133.823 )
-texture = ExtResource( 1 )
-modulate = Color( 0.0679016, 0.107115, 0.695312, 1 )
+transform/pos = Vector2( 61.8121, 217.717 )
+texture = ExtResource( 8 )
 
-[node name="StaticBody2D1" type="StaticBody2D" parent="Lake"]
+[node name="StaticBody2D1" type="StaticBody2D" parent="Lake1"]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -227,7 +229,55 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Lake/StaticBody2D1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lake1/StaticBody2D1"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Lake2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 65.8846, 315.458 )
+texture = ExtResource( 9 )
+
+[node name="StaticBody2D1" type="StaticBody2D" parent="Lake2"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lake2/StaticBody2D1"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Lake3" type="Sprite" parent="."]
+
+transform/pos = Vector2( 65.0701, 133.823 )
+texture = ExtResource( 10 )
+
+[node name="StaticBody2D1" type="StaticBody2D" parent="Lake3"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lake3/StaticBody2D1"]
 
 shape = SubResource( 1 )
 trigger = false
