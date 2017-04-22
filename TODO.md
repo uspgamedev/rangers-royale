@@ -20,7 +20,7 @@
 ### Battle Gameplay
 
 + [ ] Load from editor
-+ [ ] Events
++ [ ] Events @wil
 + [ ] List of available events
 + [ ] Reputation
 + [ ] Audience
@@ -39,7 +39,7 @@
 
 ### Items
 
-+ [ ] Item scene
++ [ ] Item scene @rica
 
 ### Map Editor
 
