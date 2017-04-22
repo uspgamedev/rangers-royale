@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://battle/mya.ogg" type="AudioStream" id=1]
 [ext_resource path="res://battle/zones/zone_tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://battle/zone_control.gd" type="Script" id=3]
 [ext_resource path="res://battle/zones/field_A.tscn" type="PackedScene" id=4]
 [ext_resource path="res://battle/zones/forest_A.tscn" type="PackedScene" id=5]
-[ext_resource path="res://objects/player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://input/mouse_scroll.tscn" type="PackedScene" id=7]
+[ext_resource path="res://battle/zones/volcano_A.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://input/mouse_scroll.tscn" type="PackedScene" id=8]
 
 [node name="Royale" type="Control"]
 
@@ -66,23 +67,27 @@ transform/pos = Vector2( 128, 288 )
 
 [node name="Zone" parent="Map/Zones" instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 128, 384 )
+transform/pos = Vector2( 192, 384 )
 
 [node name="Zone 2" parent="Map/Zones" instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 224, 336 )
+transform/pos = Vector2( 256, 288 )
+
+[node name="Zone 3" parent="Map/Zones" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 256, 192 )
 
 [node name="Players" type="Node2D" parent="Map"]
 
-[node name="Player1" parent="Map/Players" instance=ExtResource( 6 )]
+[node name="Player1" parent="Map/Players" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 304.26, 400.458 )
 
-[node name="Player2" parent="Map/Players" instance=ExtResource( 6 )]
+[node name="Player2" parent="Map/Players" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 96.0715, 152.269 )
 
-[node name="Camera" parent="Map" instance=ExtResource( 7 )]
+[node name="Camera" parent="Map" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 400, 300 )
 
