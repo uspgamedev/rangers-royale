@@ -20,7 +20,7 @@
 ### Battle Gameplay
 
 + [ ] Load from editor
-+ [ ] Events @wil
++ [X] Events
 + [X] Target picker
 + [ ] Reputation
 + [ ] Audience

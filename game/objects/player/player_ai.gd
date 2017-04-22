@@ -89,6 +89,8 @@ class Move_Random_And_Attack:
 
 var cur_objective = Move_Random_And_Attack.new()
 
+signal died(player)
+
 func _ready():
 	randomize()
 	set_fixed_process(true)
@@ -198,3 +200,4 @@ func take_damage(d):
 #Handle player death
 func kill():
 	player_node.queue_free()
+	emit_signal("died", self)
