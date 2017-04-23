@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://battle/main.gd" type="Script" id=1]
 [ext_resource path="res://battle/mya.ogg" type="AudioStream" id=2]
-[ext_resource path="res://battle/map.tscn" type="PackedScene" id=3]
-[ext_resource path="res://battle/hud.tscn" type="PackedScene" id=4]
-[ext_resource path="res://battle/zone_picker.tscn" type="PackedScene" id=5]
+[ext_resource path="res://battle/hud.tscn" type="PackedScene" id=3]
+[ext_resource path="res://battle/zone_picker.tscn" type="PackedScene" id=4]
 
 [node name="Royale" type="Control"]
 
@@ -38,11 +37,11 @@ wait_time = 5.0
 one_shot = false
 autostart = true
 
-[node name="Map" parent="." instance=ExtResource( 3 )]
+[node name="HUD" parent="." instance=ExtResource( 3 )]
 
-[node name="HUD" parent="." instance=ExtResource( 4 )]
+editor/display_folded = true
 
-[node name="ZonePicker" parent="." instance=ExtResource( 5 )]
+[node name="ZonePicker" parent="." instance=ExtResource( 4 )]
 
 zones_path = NodePath("../Map/Zones")
 

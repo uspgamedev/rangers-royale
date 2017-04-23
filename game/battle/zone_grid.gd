@@ -1,3 +1,4 @@
+# This file may be deprecated
 extends TileMap
 
 onready var camera = get_node('Camera')
@@ -20,6 +21,7 @@ func _input(event):
 			if target == null:
 				zone.unfocus()
 				zone.release()
+				
 				zone = null
 
 func get_zone_at(point, zone):

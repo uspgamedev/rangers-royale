@@ -28,6 +28,9 @@ func _fixed_process(delta):
 		self.set_pos(self.get_pos() + diff)
 	new_mouse_pos = get_viewport().get_mouse_pos()
 
+func map_to_global_world(tile):
+	return get_pos() + map_to_world(tile) + Vector2(32, 24)
+
 func trace_border():
 	var visited = {}
 	var border = []
