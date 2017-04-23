@@ -11,6 +11,7 @@ onready var new_mouse_pos = Vector2(0, 0)
 onready var focused = false
 onready var grabbed = false
 onready var diff = Vector2(0, 0)
+onready var sfx = get_node("SFX")
 
 var shaking = false
 var stable_pos = null
@@ -38,6 +39,7 @@ func _fixed_process(delta):
 func shake(time):
 	self.shaking = time
 	self.stable_pos = get_pos()
+	self.sfx.play()
 
 func set_danger(value):
 	self.danger = value
