@@ -32,8 +32,15 @@ func drop_player():
 func players_in_zone(zone):
 	var result = []
 	for player in self.players.get_children():
-		if self.zones.get_zone_at(player.get_pos()) == zone:
+		if self.zones.get_zone_at(player.get_pos(), false) == zone:
 			result.append(player)
+	return result
+
+func items_in_zone(zone):
+	var result = []
+	for item in self.items.get_children():
+		if self.zones.get_zone_at(item.get_pos(), false) == zone:
+			result.append(item)
 	return result
 
 func all_players(reject = {}):

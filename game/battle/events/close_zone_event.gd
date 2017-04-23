@@ -5,6 +5,8 @@ func _use(pos, zone):
 	var map = zone.get_parent().get_parent()
 	for player in map.players_in_zone(zone):
 		player.get_node("AI").kill()
+	for item in map.items_in_zone(zone):
+		item.queue_free()
 	var zones = map.get_node("Zones")
 	for tile in zone.get_used_cells():
 		var pos = zones.get_tile_at(zone.map_to_global_world(tile), false)
