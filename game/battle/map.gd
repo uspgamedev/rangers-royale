@@ -45,7 +45,7 @@ func items_in_zone(zone):
 
 func all_players(reject = {}):
 	var result = []
-	for player in players():
+	for player in players.get_children():
 		if not reject.has(player):
 			result.append(player)
 	return result

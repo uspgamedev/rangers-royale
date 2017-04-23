@@ -8,12 +8,12 @@ const PATCH = preload("res://objects/item/patch.tex")
 
 var player_node #Reference to the player
 var player_info #Reference to player info panel
-var map_node #Reference to the game map
+var map_node #Reference to the game map (map sets when creating the player)
 onready var audience_bar = get_node('../../../../HUD/AudienceBar')
 
-var default_unarmed_range = 100 + 50*randf() #Ranged of "unarmed weapon"
-var default_unarmed_power = 10 + randf()*5   #Power of "unarmed weapon"
-var default_unarmed_defense = 10 + randf()*5   #Power of "unarmed weapon"
+var default_unarmed_range = 40 + 10*randf() #Ranged of "unarmed weapon"
+var default_unarmed_power = 5 + randf()*3   #Power of "unarmed weapon"
+var default_unarmed_defense = randf()*3   #Defense of "unarmed weapon"
 
 var max_life = 30 #Player maxlife
 var damage_taken = 0 #Damage taken by player
@@ -64,7 +64,7 @@ class Move:
 	func _init(_dir).(0):
 		dir = _dir
 	func act(player, ai):
-		player.push_dir(dir)
+		player.push(dir)
 
 #Attacks a target with player damage
 class Attack:
@@ -84,7 +84,7 @@ class Attack:
 class Pickup:
 	extends Action
 	var item
-	func _init(_item).(2):
+	func _init(_item).(1):
 		item = _item
 	func act(player, ai):
 		print("picking item up")
@@ -123,13 +123,15 @@ class Pickup:
 class Activate:
 	extends Action
 
-	func _init().(3):
+	func _init().(2):
 		pass
 	func act(player, ai):
 		print("activating item")
 		ai.consumable_holding.get_node("Info").activate(player, ai)
 
 #USEFUL OBJECTIVE FUNCTIONS
+
+#Action Stuff#
 
 #Picks a nearby item if possible
 func tries_to_pickup_nearby_items(ai):
@@ -147,17 +149,37 @@ func tries_to_attack_nearby_bodies(ai):
 
 #Player heals itself if it has <= 'hp' of health left and has a healthpack
 func tries_to_heal_if_dying(ai, hp):
-	if ai.max_life - ai.damage_taken <= hp and ai.consumable_holding and ai.consumable_holding.get_node("Info").name == "med_kit":
+	if ai.max_life - ai.damage_taken <= hp and ai.consumable_holding and ai.consumable_holding.get_node("Info").name == "med_kit" and ai.on_cooldown <= 0:
 		return Activate.new()
+
+#Movement Stuff#
+
+#Returns a random normalized direction
+func random_direction():
+	var dir = Vector2(randf()*2 - 1,randf()*2 - 1)
+	return dir.normalized()
+
+#Given an initial positial, gives direction to target position
+func direction_to_pos(ini, target):
+	var dir = Vector2(target.x-ini.x, target.y-ini.y)
+	return dir.normalized()
+
+#Returns the direction to the closest player from a given player p. If there isn't, returns a random dir.
+func direction_to_closest_player(p):
+	var clos_p = map_node.closest_player(p.get_pos(), [p])
+	if clos_p:
+		return direction_to_pos(p.get_pos(), clos_p.get_pos())
+	else:
+		return random_direction()
 
 #OBJECTIVES
 
 #Moves randomly and if possible, tries to attack nearby players
 class Default:
 	extends Objective
-	var dir
+
 	func _init():
-		dir = DIRS.RIGHT+DIRS.DOWN
+		pass
 	func think_action(player, ai):
 		var action
 		
@@ -165,26 +187,18 @@ class Default:
 		if action:
 			return action
 		
+		action = ai.tries_to_attack_nearby_bodies(ai)
+		if action:
+			return action
+			
 		action = ai.tries_to_pickup_nearby_items(ai)
 		if action:
 			return action
 		
-		action = ai.tries_to_attack_nearby_bodies(ai)
-		if action:
-			return action
-		
-		#Small chance to change direction
-		if randf()<.01:
-			dir = DIRS.NONE
-			if randf()< .5:
-				dir += DIRS.RIGHT
-			else:
-				dir += DIRS.LEFT
-			if randf()< .5:
-				dir += DIRS.UP
-			else:
-				dir += DIRS.DOWN
-		return Move.new(dir)
+		if ai.on_cooldown <= 0:
+			return Move.new(ai.direction_to_closest_player(player))
+		else:
+			return Move.new(-1*ai.direction_to_closest_player(player))
 
 var cur_objective = Default.new()
 
@@ -220,6 +234,10 @@ func _fixed_process(delta):
 	#Fixes player info painel position
 	var pos = player_node.get_pos()
 	player_node.get_node("CanvasLayer").set_offset(pos)
+	
+	#Checks for player health every frame
+	if self.damage_taken >= self.max_life:
+		self.kill()
 
 #Creates a new range_area with radius 'r'. Removes previously range_area
 func create_new_range(r):
@@ -280,6 +298,9 @@ func leave_item(body):
 #Make player take 'd' damage and checks for death
 func take_damage(attacker, d):
 	var old_damage_taken = self.damage_taken
+	d = max(0, d - self.defense)
+	if d <= 0:
+		return
 	self.damage_taken += d
 	
 	#Update lifebar with tween
