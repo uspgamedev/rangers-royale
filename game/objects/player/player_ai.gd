@@ -245,7 +245,7 @@ func _fixed_process(delta):
 	self.on_cooldown += action.cooldown
 	
 	#Fixes player info painel position
-	var pos = player_node.get_pos()
+	var pos = player_node.get_pos()  - (map_node.camera.get_pos() - OS.get_window_size()/2)
 	player_node.get_node("CanvasLayer").set_offset(pos)
 	
 	#player_info.get_node("health_text").set_text(var2str(player_info.get_node("lifebar").get_value()))

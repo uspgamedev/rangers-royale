@@ -6,6 +6,7 @@ const DROP = preload("res://battle/map/drop.tscn")
 onready var zones = get_node("Zones")
 onready var items = get_node("Items")
 onready var players = get_node("Players")
+onready var camera = get_node("Camera")
 
 func _ready():
 	randomize()
