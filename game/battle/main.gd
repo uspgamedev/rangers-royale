@@ -12,6 +12,12 @@ onready var zones = map.get_node("Zones")
 onready var players = map.get_node("Players")
 onready var event_panel = get_node("HUD/EventPanel")
 
+onready var normal_bgm = get_node("NormalBGM")
+onready var intense_bgm = get_node("IntenseBGM")
+onready var jingle = get_node("Jingle")
+
+var intense = false
+
 func _ready():
 	zones.generate_border()
 	for zone in zones.get_children():
@@ -32,8 +38,16 @@ func _draw_event_time():
 	event_panel.draw_event(self)
 
 func _fixed_process(delta):
+	temp += delta
 	if players.get_child_count() <= 1:
 		_start_countdown()
+
+func _go_intense():
+	if not intense:
+		normal_bgm.stop()
+		jingle.play()
+		jingle.get_node("Timer").start()
+		intense = true
 
 func _start_countdown():
 	endgametimer.start()

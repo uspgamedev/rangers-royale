@@ -6,6 +6,7 @@ var amount
 var end = false
 
 signal epic_fail
+signal intense
 
 func _ready():
 	change_enjoyment(70)
@@ -63,6 +64,8 @@ func change_enjoyment(amount):
 	if (enjoyment <= 0 and !end):
 		lose()
 		end = true
+	elif enjoyment > 80:
+		emit_signal("intense")
 
 func lose():
 	emit_signal("epic_fail")
