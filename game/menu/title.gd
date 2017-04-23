@@ -15,4 +15,5 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
+		get_node("/root/BGM").stop()
 		replace_by(EDITOR.instance())
