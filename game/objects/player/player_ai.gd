@@ -8,6 +8,7 @@ const PATCH = preload("res://objects/item/patch.tex")
 
 var player_node #Reference to the player
 var player_info #Reference to player info panel
+var map_node #Reference to the game map
 
 var default_unarmed_range = 100 + 50*randf() #Ranged of "unarmed weapon"
 var default_unarmed_power = 10 + randf()*5   #Power of "unarmed weapon"
@@ -189,7 +190,7 @@ func _ready():
 	randomize()
 	set_fixed_process(true)
 	player_node = get_parent()
-	player_info = player_node.get_node("player_info")
+	player_info = player_node.get_node("CanvasLayer").get_node("player_info")
 	
 	#Setup lifebar
 	var lifebar = player_info.get_node('lifebar')
@@ -211,6 +212,10 @@ func _fixed_process(delta):
 	var action = cur_objective.think_action(player_node, self)
 	action.act(player_node, self)
 	self.on_cooldown += action.cooldown
+	
+	#Fixes player info painel position
+	var pos = player_node.get_pos()
+	player_node.get_node("CanvasLayer").set_offset(pos)
 
 #Creates a new range_area with radius 'r'. Removes previously range_area
 func create_new_range(r):

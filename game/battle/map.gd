@@ -20,6 +20,7 @@ func drop_item(item, pos):
 
 func drop_player():
 	var player = PLAYER.instance()
+	player.get_node("AI").map_node = self
 	var all_zones = self.zones.get_children()
 	var zone = all_zones[randi() % all_zones.size()]
 	var tiles = zone.get_used_cells()
