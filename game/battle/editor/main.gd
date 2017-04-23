@@ -14,10 +14,18 @@ var current_zone
 var at_valid_tile
 
 func _ready():
+	randomize()
 	update_placements_view()
-	self.current_zone = ZONES[3].instance()
-	zones.add_child(self.current_zone)
 	set_process_input(true)
+	grab_zone()
+
+func grab_zone():
+	var i = randi() % ZONES.size()
+	if self.current_zone != null:
+		self.current_zone.unfocus()
+		self.current_zone = null
+	self.current_zone = ZONES[i].instance()
+	zones.add_child(self.current_zone)
 	yield(get_tree(), "fixed_frame")
 	yield(get_tree(), "fixed_frame")
 	self.current_zone.focus()
@@ -52,7 +60,10 @@ func _input(event):
 					check = true
 			if check:
 				self.current_zone.set_pos(nearest)
-				
+			else:
+				self.at_valid_tile = false
+	elif event.is_action_pressed("ui_click") and self.at_valid_tile:
+		grab_zone()
 
 func local_to_global(zone, tile):
 	return self.zones.get_tile_at(zone.get_pos() + Vector2(1,1), false) + tile
@@ -60,27 +71,12 @@ func local_to_global(zone, tile):
 func update_placements_view():
 	self.placements = valid_placements()
 	at_valid_tile = false
-	#for placement in self.placements:
-	#	zones.set_cellv(placement, 0)
 
 func valid_placements():
 	var placements = {}
 	var invalid = []
-	var minpos = Vector2()
-	var maxpos = Vector2()
-	for zone in zones.get_children():
-		for cell in zone.get_used_cells():
-			invalid.append(local_to_global(zone, cell))
-			if cell.x < minpos.x:
-				minpos.x = cell.x
-			if cell.y < minpos.y:
-				minpos.y = cell.y
-			if cell.x > maxpos.x:
-				maxpos.x = cell.x
-			if cell.y > maxpos.y:
-				maxpos.y = cell.y
-	for x in range(minpos.x-2,maxpos.x+3):
-		for y in range(minpos.y-2, maxpos.y+3):
+	for x in range(-20,20):
+		for y in range(-20,20):
 			placements[Vector2(x,y)] = true
 	for tile in placements.keys():
 		if int(tile.y) % 2 != 0:
