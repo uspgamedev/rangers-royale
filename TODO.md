@@ -5,21 +5,21 @@
 
 + [X] Forest
 + [X] Lake
-+ [ ] Ruin
++ [X] Ruin
 
 ### BGM
 
-+ [ ] Field theme
-+ [ ] Volcano theme
-+ [ ] Forest theme
-+ [ ] Lake theme
-+ [ ] Ruin theme
++ [ ] Intense battle theme
++ [ ] Editor theme
++ [ ] Opening fanfare
++ [ ] Win theme
++ [ ] Loss theme
 
 ## Features
 
 ### Battle Gameplay
 
-+ [ ] Load from editor
++ [X] Load from editor
 + [X] Events
 + [X] Target picker
 + [ ] Reputation
@@ -27,15 +27,16 @@
 
 #### Events
 
-+ [ ] Drop weapon
++ [X] Drop weapon
 + [X] Drop first aid kit
++ [X] Clsoe a zone
 + [ ] Release monster
 + [ ] Trigger zone effect
 + [ ] Reveal player location
 
 #### Players
 
-// AI stuff
++ [ ] Persistent objectivest
 
 #### UI
 
@@ -50,7 +51,7 @@
 ### Map Editor
 
 + [ ] Zone pallete
-+ [ ] Drag and drop zones
++ [X] Drag and drop zones
 + [ ] Load
-+ [ ] Save
++ [X] Save
 
