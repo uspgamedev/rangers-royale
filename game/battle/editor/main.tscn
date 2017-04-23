@@ -24,5 +24,7 @@ transform/pos = Vector2( 0, 0 )
 
 [node name="Zone" parent="Map/Zones" instance=ExtResource( 3 )]
 
+danger = 0
+
 
 [editable path="Map"]

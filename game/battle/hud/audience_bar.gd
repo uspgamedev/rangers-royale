@@ -7,6 +7,9 @@ var end = false
 
 func _ready():
 	change_enjoyment(70)
+	yield(get_tree(), "fixed_frame")
+	yield(get_tree(), "fixed_frame")
+	yield(get_tree(), "fixed_frame")
 	set_fixed_process(true)
 
 func _fixed_process(delta):
