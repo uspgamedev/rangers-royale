@@ -391,5 +391,5 @@ func drop_consumable():
 #Handle player death
 func kill():
 	player_node.queue_free()
-	audience_bar.death(self)
 	emit_signal("died", self)
+	audience_bar.death(self)
