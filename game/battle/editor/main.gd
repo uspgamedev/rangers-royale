@@ -37,14 +37,21 @@ func _input(event):
 		self.at_valid_tile = (nearest != null)
 		# Now disconsider positions that go into other zones
 		if self.current_zone.get_pos() != nearest and self.at_valid_tile:
-			for tile in self.current_zone.get_used_cells():
-				var zone = self.current_zone
+			var zone = self.current_zone
+			for tile in zone.get_used_cells():
 				var pos = nearest + zone.map_to_world(tile) + Vector2(32,24)
 				var other = zones.get_zone_at(pos, false)
 				if other != zone and other != null:
 					self.at_valid_tile = false
 					return
-			self.current_zone.set_pos(nearest)
+			var check = false
+			for tile in zone.trace_border():
+				var pos = nearest + zone.map_to_world(tile) + Vector2(32,24)
+				var other = zones.get_zone_at(pos, false)
+				if other != zone and other != null:
+					check = true
+			if check:
+				self.current_zone.set_pos(nearest)
 				
 
 func local_to_global(zone, tile):
@@ -72,8 +79,8 @@ func valid_placements():
 				maxpos.x = cell.x
 			if cell.y > maxpos.y:
 				maxpos.y = cell.y
-	for x in range(minpos.x-1,maxpos.x+2):
-		for y in range(minpos.y-1, maxpos.y+2):
+	for x in range(minpos.x-2,maxpos.x+3):
+		for y in range(minpos.y-2, maxpos.y+3):
 			placements[Vector2(x,y)] = true
 	for tile in placements.keys():
 		if int(tile.y) % 2 != 0:
