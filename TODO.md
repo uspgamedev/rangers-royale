@@ -10,7 +10,7 @@
 ### BGM
 
 + [ ] Intense battle theme
-+ [ ] Editor theme
++ [X] Editor theme
 + [ ] Opening fanfare
 + [ ] Win theme
 + [ ] Loss theme
@@ -23,7 +23,7 @@
 + [X] Events
 + [X] Target picker
 + [ ] Reputation
-+ [ ] Audience
++ [X] Audience
 
 #### Events
 
@@ -42,7 +42,7 @@
 
 + [X] List of available events
 + [ ] News flash banner
-+ [ ] Audience meter
++ [X] Audience meter
 
 ### Items
 
@@ -54,4 +54,11 @@
 + [X] Drag and drop zones
 + [ ] Load
 + [X] Save
+
+## Juiciness
+
++ [X] Burn white hexagons
++ [ ] Transition from title to editor
++ [ ] Transition from editor to battle
++ [ ] Players dropping in battle field
 

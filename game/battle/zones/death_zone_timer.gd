@@ -17,5 +17,6 @@ func _activate():
 	for tile in zone.get_used_cells():
 		var pos = zones.get_tile_at(zone.map_to_global_world(tile), false)
 		zones.set_cellv(pos, 0)
+	zone.clear()
 	zone.queue_free()
 	queue_free()
