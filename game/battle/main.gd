@@ -38,7 +38,6 @@ func _draw_event_time():
 	event_panel.draw_event(self)
 
 func _fixed_process(delta):
-	temp += delta
 	if players.get_child_count() <= 1:
 		_start_countdown()
 
