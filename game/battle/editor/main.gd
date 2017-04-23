@@ -1,5 +1,7 @@
 extends Control
 
+const BATTLE = preload("res://battle/main.tscn")
+
 const ZONES = [
 	preload("res://battle/zones/field_A.tscn"),
 	preload("res://battle/zones/volcano_A.tscn"),
@@ -15,7 +17,6 @@ var at_valid_tile
 
 func _ready():
 	randomize()
-	update_placements_view()
 	set_process_input(true)
 	grab_zone()
 
@@ -24,7 +25,10 @@ func grab_zone():
 	if self.current_zone != null:
 		self.current_zone.unfocus()
 		self.current_zone = null
+		if not self.at_valid_tile:
+			self.current_zone.queue_free()
 	self.current_zone = ZONES[i].instance()
+	update_placements()
 	zones.add_child(self.current_zone)
 	yield(get_tree(), "fixed_frame")
 	yield(get_tree(), "fixed_frame")
@@ -64,13 +68,28 @@ func _input(event):
 				self.at_valid_tile = false
 	elif event.is_action_pressed("ui_click") and self.at_valid_tile:
 		grab_zone()
+	elif event.is_action_pressed("ui_accept"):
+		self.current_zone.queue_free()
+		self.current_zone = null
+		set_process_input(false)
+		yield(get_tree(), "fixed_frame")
+		yield(get_tree(), "fixed_frame")
+		var map = get_node("Map")
+		remove_child(map)
+		yield(get_tree(), "fixed_frame")
+		yield(get_tree(), "fixed_frame")
+		var battle = BATTLE.instance()
+		battle.add_child(map)
+		yield(get_tree(), "fixed_frame")
+		yield(get_tree(), "fixed_frame")
+		replace_by(battle)
 
 func local_to_global(zone, tile):
 	return self.zones.get_tile_at(zone.get_pos() + Vector2(1,1), false) + tile
 
-func update_placements_view():
+func update_placements():
 	self.placements = valid_placements()
-	at_valid_tile = false
+	self.at_valid_tile = false
 
 func valid_placements():
 	var placements = {}
@@ -78,9 +97,9 @@ func valid_placements():
 	for x in range(-20,20):
 		for y in range(-20,20):
 			placements[Vector2(x,y)] = true
-	for tile in placements.keys():
-		if int(tile.y) % 2 != 0:
-			invalid.append(tile)
+	#for tile in placements.keys():
+	#	if int(tile.y) % 2 != 0:
+	#		invalid.append(tile)
 	for tile in invalid:
 		placements.erase(tile)
 	return placements.keys()

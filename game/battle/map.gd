@@ -1,10 +1,14 @@
 extends Node2D
 
+const PLAYER = preload("res://objects/player.tscn")
 const DROP = preload("res://battle/map/drop.tscn")
 
 onready var zones = get_node("Zones")
 onready var items = get_node("Items")
 onready var players = get_node("Players")
+
+func _ready():
+	randomize()
 
 func drop_item(item, pos):
 	var drop = DROP.instance()
@@ -13,6 +17,16 @@ func drop_item(item, pos):
 	add_child(drop)
 	yield(drop, "item_dropped")
 	items.add_child(item)
+
+func drop_player():
+	var player = PLAYER.instance()
+	var all_zones = self.zones.get_children()
+	var zone = all_zones[randi() % all_zones.size()]
+	var tiles = zone.get_used_cells()
+	var tile = tiles[randi() % tiles.size()]
+	var pos = zone.map_to_global_world(tile)
+	player.set_pos(pos)
+	players.add_child(player)
 
 func players_in_zone(zone):
 	var result = []

@@ -9,14 +9,12 @@ func _ready():
 func generate_border():
 	clear()
 	for zone in get_children():
+		var off = Vector2(0,0)
 		for border in zone.trace_border():
-			var point = zone.get_pos() + zone.map_to_world(border)
+			var point = zone.get_pos() + zone.map_to_world(border) + Vector2(32,24)
 			var tile = world_to_map(point)
-			set_cellv(tile, 0)
-	for zone in get_children():
-		for tile in zone.get_used_cells():
-			var point = zone.get_pos() + zone.map_to_world(tile)
-			set_cellv(get_tile_at(point), -1)
+			if get_zone_at(point, false) == null:
+				set_cellv(tile + off, 0)
 
 func get_tile_at(pos, fix=true):
 	if fix:
