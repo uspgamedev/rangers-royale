@@ -27,6 +27,7 @@ func _input(event):
 		var pos = zones.screen_to_map(event.pos)
 		var nearest = null
 		var mindist = 1024 * 1024
+		# Find valid placement closest to cursor
 		for tile in self.placements:
 			var target = zones.map_to_world(tile)
 			var dist = target.distance_to(pos)
@@ -34,6 +35,7 @@ func _input(event):
 				mindist = dist
 				nearest = target
 		self.at_valid_tile = (nearest != null)
+		# Now disconsider positions that go into other zones
 		if self.current_zone.get_pos() != nearest and self.at_valid_tile:
 			for tile in self.current_zone.get_used_cells():
 				var zone = self.current_zone
