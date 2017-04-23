@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://battle/hud/event_panel.gd" type="Script" id=1]
-[ext_resource path="res://crowd_bar.gd" type="Script" id=2]
+[ext_resource path="res://battle/hud/audience_bar.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -64,7 +64,7 @@ margin/right = 0.0
 margin/bottom = 0.0
 columns = 11
 
-[node name="CrowdBar" type="ProgressBar" parent="."]
+[node name="AudienceBar" type="ProgressBar" parent="."]
 
 rect/rotation = 90.0
 focus/ignore_mouse = false
@@ -87,7 +87,7 @@ range/rounded = false
 percent/visible = false
 script/script = ExtResource( 2 )
 
-[node name="ChangeStatus" type="Tween" parent="CrowdBar"]
+[node name="ChangeStatus" type="Tween" parent="AudienceBar"]
 
 playback/process_mode = 1
 playback/active = false

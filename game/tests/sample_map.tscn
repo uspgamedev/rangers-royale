@@ -5,6 +5,10 @@
 
 [node name="Royale" instance=ExtResource( 1 )]
 
+[node name="HUD" parent="."]
+
+editor/display_folded = false
+
 [node name="Map" parent="." instance=ExtResource( 2 )]
 
 

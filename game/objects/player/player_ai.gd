@@ -9,6 +9,7 @@ const PATCH = preload("res://objects/item/patch.tex")
 var player_node #Reference to the player
 var player_info #Reference to player info panel
 var map_node #Reference to the game map
+onready var audience_bar = get_node('../../../../HUD/AudienceBar')
 
 var default_unarmed_range = 100 + 50*randf() #Ranged of "unarmed weapon"
 var default_unarmed_power = 10 + randf()*5   #Power of "unarmed weapon"
@@ -29,7 +30,7 @@ var nearby_items = [] #Number of items inside this player item_area
 var on_cooldown = 0 #Seconds the player can't make any action besides walking
 
 var fans = 10 + int(100 * randf())
-var popularity = fans + 10 + int(50 * randf())
+var haters = 10 + int(50 * randf())
 
 #PRIMITIVE CLASSES
 class Action:
@@ -73,7 +74,8 @@ class Attack:
 	func _init(_attacker, _target).(3):
 		target = _target
 		attacker = _attacker
-		attacker.popularity += SCORE.ATTACK_SCORE
+		attacker.fans += target.get_node('AI').haters/50
+		attacker.haters += target.get_node('AI').fans/50
 	func act(player, ai):
 		print("attacking")
 		target.get_node('AI').take_damage(attacker, ai.power)
@@ -133,12 +135,14 @@ class Activate:
 func tries_to_pickup_nearby_items(ai):
 	if ai.nearby_items.size() > 0 and ai.on_cooldown <= 0:
 		var random_body = ai.nearby_items[randi()%ai.nearby_items.size()]
+		audience_bar.item_pickup(self)
 		return Pickup.new(random_body)
 		
 #Attack a random nearby body if possible
 func tries_to_attack_nearby_bodies(ai):
 	if ai.nearby_bodies.size() > 0 and ai.on_cooldown <= 0:
 		var random_body = ai.nearby_bodies[randi()%ai.nearby_bodies.size()]
+		audience_bar.attack(self)
 		return Attack.new(self, random_body)
 
 #Player heals itself if it has <= 'hp' of health left and has a healthpack
@@ -284,7 +288,8 @@ func take_damage(attacker, d):
 	tween.start()
 	
 	if self.damage_taken >= self.max_life:
-		attacker.fans += SCORE.KILL_SCORE
+		attacker.fans += self.haters/30
+		attacker.haters += self.fans/20
 		self.kill()
 
 #Make player drop current weapon
@@ -324,6 +329,7 @@ func drop_consumable():
 
 #Heal player
 func heal(h):
+	audience_bar.use_item(self)
 	self.damage_taken = max(0, self.damage_taken - h)
 	#Update lifebar with tween
 	var tween = player_info.get_node('lifebar/change_life_tween')
@@ -334,4 +340,5 @@ func heal(h):
 #Handle player death
 func kill():
 	player_node.queue_free()
+	audience_bar.death(self)
 	emit_signal("died", self)
