@@ -178,7 +178,11 @@ func direction_to_item(item_name, p):
 		return random_direction()
 
 func direction_to_closest_safer_tile(pos, ref):
-	return (map_node.closest_safer_tile(pos, ref) - pos).normalized()
+	var target = map_node.closest_safer_tile(pos, ref)
+	if target != null:
+		return (target - pos).normalized()
+	else:
+		return random_direction()
 
 #OBJECTIVES
 
