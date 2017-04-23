@@ -1,7 +1,9 @@
 extends ProgressBar
 
+onready var players = get_node('../../Map/Players')
 var enjoyment = 0
 var amount
+var end = false
 
 func _ready():
 	change_enjoyment(70)
@@ -9,32 +11,39 @@ func _ready():
 
 func _fixed_process(delta):
 	check_status(delta)
+	if (players.get_child_count() <= 2 and !end):
+		player_win(players.get_child(1).get_node('AI'))
+		end = true
 
 func check_status(delta):
-	#check_player_win(player_amount)
-	#check_catastrophe()
 	change_enjoyment(-delta)
 
 func attack(attacker):
 	amount = float(attacker.fans)/400
-	#print("attack ", amount)
+	print("attack ", amount)
 	change_enjoyment(amount)
 
 func death(player):
-	amount = float(player.haters*2.5 - player.fans)/50
-	#print("death ", amount)
+	amount = float(player.haters - player.fans)/5
+	print("death ", amount)
+	change_enjoyment(amount)
+
+func player_win(winner):
+	amount = float(winner.fans - winner.haters)
+	print(winner.fans)
+	print(winner.haters)
+	print(winner.name, " ", amount)
 	change_enjoyment(amount)
 
 func item_pickup(player):
 	amount = float(player.fans)/600
-	#print("pickup ", amount)
+	print("pickup ", amount)
 	change_enjoyment(amount)
 
 func use_item(player):
-	pass
-	#amount = float(player.fans - player.max_life - player.haters/3)
-	#print("use item ", amount)
-	#change_enjoyment(amount)
+	amount = float(player.fans*2 - player.haters)/800
+	print("use item ", amount)
+	change_enjoyment(amount)
 
 func change_enjoyment(amount):
 	var tween = get_node('ChangeStatus')

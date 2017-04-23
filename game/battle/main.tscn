@@ -33,7 +33,7 @@ stream/buffering_ms = 500
 [node name="EventDrawTimer" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 5.0
+wait_time = 0.5
 one_shot = false
 autostart = true
 
