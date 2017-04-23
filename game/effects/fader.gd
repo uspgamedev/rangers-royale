@@ -3,8 +3,8 @@ extends CanvasLayer
 export(float) var fade_in_time = 1.0
 export(float) var fade_out_time = 1.0
 
-const BLACK = Color(0,0,0,1)
-const CLEAR = Color(0,0,0,0)
+const BLACK = Color(31/255.0,40/255.0,48/255.0,1)
+const CLEAR = Color(31/255.0,40/255.0,48/255.0,0)
 
 onready var screen = get_node("Screen")
 onready var tween = get_node("Tween")
