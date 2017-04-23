@@ -7,6 +7,8 @@ const ZONES = [
 	preload("res://battle/zones/volcano_A.tscn"),
 	preload("res://battle/zones/lake_A.tscn"),
 	preload("res://battle/zones/forest_A.tscn"),
+	preload("res://battle/zones/ruins_A.tscn"),
+	preload("res://battle/zones/ruins_B.tscn"),
 ]
 
 onready var zones = get_node("Map/Zones")
