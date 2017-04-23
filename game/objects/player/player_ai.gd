@@ -177,6 +177,9 @@ func direction_to_item(item_name, p):
 	else:
 		return random_direction()
 
+func direction_to_closest_safer_tile(pos, ref):
+	return (map_node.closest_safer_tile(pos, ref) - pos).normalized()
+
 #OBJECTIVES
 
 #Moves randomly and if possible, tries to attack nearby players
@@ -200,8 +203,15 @@ class Default:
 		if action:
 			return action
 		
+		var danger = 0
+		var player_zone = ai.map_node.zones.get_zone_at(player.get_pos(), false)
+		if player_zone != null:
+			danger += player_zone.danger
+		
 		var move
-		if ai.on_cooldown <= 0:
+		if danger > 5:
+			move = Move.new(ai.direction_to_closest_safer_tile(player.get_pos(), danger))
+		elif ai.on_cooldown <= 0:
 			move = Move.new(ai.direction_to_closest_player(player))
 		else:
 			move = Move.new(-1*ai.direction_to_closest_player(player))

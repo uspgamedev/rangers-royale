@@ -1,5 +1,6 @@
 extends TileMap
 
+export(int) var danger = 0
 export(int) var stealth_bonus = 0
 export(int) var friction = 0
 export(int) var armor = 0
@@ -37,6 +38,9 @@ func _fixed_process(delta):
 func shake(time):
 	self.shaking = time
 	self.stable_pos = get_pos()
+
+func set_danger(value):
+	self.danger = value
 
 func map_to_global_world(tile):
 	return get_pos() + map_to_world(tile) + Vector2(32, 24)

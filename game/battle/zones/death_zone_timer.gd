@@ -5,6 +5,7 @@ var zone
 func _ready():
 	assert(zone != null)
 	zone.shake(get_wait_time())
+	zone.set_danger(10)
 
 func _activate():
 	var map = zone.get_parent().get_parent()
