@@ -7,6 +7,7 @@ var target_pos
 var focused_zone
 
 signal target_picked(pos, zone)
+signal target_canceled()
 
 func _ready():
 	assert(zones != null and icon != null)
@@ -29,4 +30,6 @@ func _input(event):
 		if self.focused_zone != null:
 			self.focused_zone.unfocus()
 			emit_signal("target_picked", self.target_pos, self.focused_zone)
+		else:
+			emit_signal("target_canceled")
 		queue_free()

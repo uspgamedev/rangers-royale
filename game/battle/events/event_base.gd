@@ -12,8 +12,13 @@ func _choose():
 	picker.zones = self.map.zones
 	picker.icon = self.icon
 	picker.connect("target_picked", self, "_use")
+	picker.connect("target_canceled", self, "_cancel")
 	add_child(picker)
 	emit_signal("event_chosen")
+
+func _cancel():
+	#set_pressed(false)
+	release_focus()
 
 func _use(pos, zone):
 	queue_free()
