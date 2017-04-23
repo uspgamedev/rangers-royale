@@ -11,6 +11,8 @@ onready var map = get_node("Map")
 onready var zones = map.get_node("Zones")
 onready var players = map.get_node("Players")
 onready var event_panel = get_node("HUD/EventPanel")
+onready var audience_bar = get_node("HUD/AudienceBar")
+onready var time = 0
 
 onready var normal_bgm = get_node("NormalBGM")
 onready var intense_bgm = get_node("IntenseBGM")
@@ -38,6 +40,7 @@ func _draw_event_time():
 	event_panel.draw_event(self)
 
 func _fixed_process(delta):
+	time += delta
 	if players.get_child_count() <= 1:
 		_start_countdown()
 
@@ -54,5 +57,8 @@ func _start_countdown():
 
 func _endgame():
 	var result = RESULT.instance()
+	result.total_time = time
+	result.num_survivors = players.get_child_count()
+	result.autience_score = audience_bar.enjoyment
 	queue_free()
 	get_parent().add_child(result)

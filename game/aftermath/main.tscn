@@ -1,29 +1,30 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://gui/theme.tres" type="Theme" id=1]
-[ext_resource path="res://gui/Exo2-Light.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://menu/logo-simple-alternate.tex" type="Texture" id=3]
+[ext_resource path="res://aftermath/main.gd" type="Script" id=2]
+[ext_resource path="res://gui/Exo2-Light.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://menu/logo-simple-alternate.tex" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 
 font/size = 24
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 2 )
+font/font = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 
 font/size = 18
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 2 )
+font/font = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=3]
 
 font/size = 32
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 2 )
+font/font = ExtResource( 3 )
 
 [node name="MatchResults" type="Panel"]
 
@@ -38,6 +39,10 @@ margin/left = 200.0
 margin/top = 100.0
 margin/right = 200.0
 margin/bottom = 100.0
+script/script = ExtResource( 2 )
+total_time = 100
+num_survivors = null
+audience_score = null
 
 [node name="Frame" type="Control" parent="."]
 
@@ -116,6 +121,13 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="Tween" type="Tween" parent="Frame/TotalTime/Value"]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
 [node name="NumSurvivors" type="Control" parent="Frame"]
 
 anchor/right = 1
@@ -162,6 +174,13 @@ align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Tween" type="Tween" parent="Frame/NumSurvivors/Value"]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 [node name="AudienceScore" type="Control" parent="Frame"]
 
@@ -210,6 +229,13 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="Tween" type="Tween" parent="Frame/AudienceScore/Value"]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
 [node name="ReputationHeader" type="Label" parent="Frame"]
 
 anchor/right = 1
@@ -245,6 +271,13 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="Tween" type="Tween" parent="Frame/Reputation"]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
 [node name="TextureFrame" type="TextureFrame" parent="Frame"]
 
 anchor/left = 3
@@ -260,7 +293,7 @@ margin/left = 64.0
 margin/top = 128.0
 margin/right = -64.0
 margin/bottom = 0.0
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 stretch_mode = 0
 
 
