@@ -4,6 +4,7 @@ const DIRS = preload("res://definitions/directions.gd")
 const ITEM_TYPE = preload("res://definitions/item_enums.gd")
 const SCORE = preload("res://definitions/score.gd")
 const RANGE_AREA = preload("res://objects/player/range_area.tscn")
+const PATCH = preload("res://objects/item/patch.tex")
 
 var player_node #Reference to the player
 var player_info #Reference to player info panel
@@ -292,7 +293,7 @@ func drop_weapon():
 	self.create_new_range(default_unarmed_range)
 	
 	#Update player info weapon image
-	self.player_info.get_node("weapon").set_texture("res://objects/item/patch.tex")
+	self.player_info.get_node("weapon").set_texture(PATCH)
 	
 #Make player drop current armor
 func drop_armor():
@@ -304,7 +305,7 @@ func drop_armor():
 	self.defense = self.default_unarmed_defense
 	
 	#Update player info armor image
-	self.player_info.get_node("armor").set_texture("res://objects/item/patch.tex")
+	self.player_info.get_node("armor").set_texture(PATCH)
 
 #Make player drop current consumable
 func drop_consumable():
@@ -314,7 +315,7 @@ func drop_consumable():
 	self.consumable_holding = null
 
 	#Update player info consumable image
-	self.player_info.get_node("consumable").set_texture("res://objects/item/patch.tex")
+	self.player_info.get_node("consumable").set_texture(PATCH)
 
 #Heal player
 func heal(h):
