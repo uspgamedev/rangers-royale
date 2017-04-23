@@ -10,12 +10,14 @@ var player_info #Reference to player info panel
 
 var default_unarmed_range = 100 + 50*randf() #Ranged of "unarmed weapon"
 var default_unarmed_power = 10 + randf()*5   #Power of "unarmed weapon"
+var default_unarmed_defense = 10 + randf()*5   #Power of "unarmed weapon"
 
 var max_life = 30 #Player maxlife
 var damage_taken = 0 #Damage taken by player
 var name = "dummy" #Name of player
 var afiliation = randi()%2 #Number of afiliation
 var power = default_unarmed_power #Damage player inflicts when attacking
+var defense = default_unarmed_defense #Damage armor from player blocks from attacks
 var weapon_equipped #Weapon player is holding
 var armor_equipped #Armor player is holding
 var consumable_holding #Consumable item player is holding
@@ -90,6 +92,12 @@ class Pickup:
 			ai.weapon_equipped = item
 			ai.power = item_info.power
 			ai.create_new_range(item_info.range_radius)
+		if item_info.type == ITEM_TYPE.ARMOR:
+			#Drop previously equipped armor, if it exists
+			ai.drop_armor()
+			
+			ai.armor_equipped = item
+			ai.defense = item_info.defense
 		elif item_info.type == ITEM_TYPE.CONSUMABLE:
 			#Drop previously consumable its holding, if it exists
 			ai.drop_consumable()
@@ -269,6 +277,15 @@ func drop_weapon():
 	self.weapon_equipped = null
 	self.power = self.default_unarmed_power
 	self.create_new_range(default_unarmed_range)
+	
+#Make player drop current armor
+func drop_armor():
+	if not self.armor_equipped:
+		return
+	
+	#Set default values for power and range
+	self.armor_equipped = null
+	self.defense = self.default_unarmed_defense
 
 #Make player drop current consumable
 func drop_consumable():

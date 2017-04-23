@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://battle/map.gd" type="Script" id=1]
 [ext_resource path="res://input/mouse_scroll.tscn" type="PackedScene" id=2]
@@ -9,10 +9,9 @@
 [ext_resource path="res://battle/zones/volcano_A.tscn" type="PackedScene" id=7]
 [ext_resource path="res://battle/zones/lake_A.tscn" type="PackedScene" id=8]
 [ext_resource path="res://objects/item/sword.tscn" type="PackedScene" id=9]
-[ext_resource path="res://objects/body.gd" type="Script" id=10]
-[ext_resource path="res://objects/item/med_kit.tscn" type="PackedScene" id=11]
-[ext_resource path="res://battle/player_control.gd" type="Script" id=12]
-[ext_resource path="res://objects/player.tscn" type="PackedScene" id=13]
+[ext_resource path="res://objects/item/med_kit.tscn" type="PackedScene" id=10]
+[ext_resource path="res://battle/player_control.gd" type="Script" id=11]
+[ext_resource path="res://objects/player.tscn" type="PackedScene" id=12]
 
 [node name="Map" type="Node2D"]
 
@@ -85,42 +84,36 @@ transform/pos = Vector2( 224, 528 )
 [node name="Sword" parent="Items" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 170, 190 )
-input/pickable = false
-collision/margin = 0.08
-script/script = ExtResource( 10 )
 
-[node name="MedKit" parent="Items" instance=ExtResource( 11 )]
+[node name="MedKit" parent="Items" instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 254, 260 )
-input/pickable = false
-collision/margin = 0.08
-script/script = ExtResource( 10 )
 
 [node name="Players" type="Node2D" parent="."]
 
-script/script = ExtResource( 12 )
+script/script = ExtResource( 11 )
 
-[node name="Player1" parent="Players" instance=ExtResource( 13 )]
+[node name="Player1" parent="Players" instance=ExtResource( 12 )]
 
 transform/pos = Vector2( 306.26, 293.458 )
 
-[node name="Player2" parent="Players" instance=ExtResource( 13 )]
+[node name="Player2" parent="Players" instance=ExtResource( 12 )]
 
 transform/pos = Vector2( 113.072, 165.269 )
 
-[node name="Player3" parent="Players" instance=ExtResource( 13 )]
+[node name="Player3" parent="Players" instance=ExtResource( 12 )]
 
 transform/pos = Vector2( 88.6953, 350.311 )
 
-[node name="Player4" parent="Players" instance=ExtResource( 13 )]
+[node name="Player4" parent="Players" instance=ExtResource( 12 )]
 
 transform/pos = Vector2( 233.848, 431.197 )
 
-[node name="Player5" parent="Players" instance=ExtResource( 13 )]
+[node name="Player5" parent="Players" instance=ExtResource( 12 )]
 
 transform/pos = Vector2( 464.319, 360.283 )
 
-[node name="Player6" parent="Players" instance=ExtResource( 13 )]
+[node name="Player6" parent="Players" instance=ExtResource( 12 )]
 
 transform/pos = Vector2( 354.623, 171.917 )
 
