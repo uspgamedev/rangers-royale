@@ -33,8 +33,11 @@ func _draw_event_time():
 
 func _fixed_process(delta):
 	if players.get_child_count() <= 1:
-		endgametimer.start()
-		set_fixed_process(false)
+		_start_countdown()
+
+func _start_countdown():
+	endgametimer.start()
+	set_fixed_process(false)
 
 func _endgame():
 	var result = RESULT.instance()

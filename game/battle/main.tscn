@@ -46,8 +46,6 @@ autostart = false
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
-editor/display_folded = true
-
 [node name="ZonePicker" parent="." instance=ExtResource( 4 )]
 
 zones_path = NodePath("../Map/Zones")
@@ -55,6 +53,8 @@ zones_path = NodePath("../Map/Zones")
 [connection signal="timeout" from="EventDrawTimer" to="." method="_draw_event_time"]
 
 [connection signal="timeout" from="EndGameTimer" to="." method="_endgame"]
+
+[connection signal="epic_fail" from="HUD/AudienceBar" to="." method="_start_countdown"]
 
 
 [editable path="HUD"]

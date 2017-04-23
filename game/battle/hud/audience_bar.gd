@@ -5,6 +5,8 @@ var enjoyment = 0
 var amount
 var end = false
 
+signal epic_fail
+
 func _ready():
 	change_enjoyment(70)
 	yield(get_tree(), "fixed_frame")
@@ -63,4 +65,5 @@ func change_enjoyment(amount):
 		end = true
 
 func lose():
+	emit_signal("epic_fail")
 	print('you failed to entertain the crowd')
