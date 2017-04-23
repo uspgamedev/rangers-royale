@@ -169,6 +169,14 @@ func direction_to_closest_player(p):
 	else:
 		return random_direction()
 
+#Searches for an item name on the map, and returns the direction to closest one if exists, given player p as start position.
+func direction_to_item(item_name, p):
+	var clos_p = map_node.closest_player(p.get_pos(), [p])
+	if clos_p:
+		return direction_to_pos(p.get_pos(), clos_p.get_pos())
+	else:
+		return random_direction()
+
 #OBJECTIVES
 
 #Moves randomly and if possible, tries to attack nearby players
@@ -240,6 +248,8 @@ func _fixed_process(delta):
 	var pos = player_node.get_pos()
 	player_node.get_node("CanvasLayer").set_offset(pos)
 	
+	#player_info.get_node("health_text").set_text(var2str(player_info.get_node("lifebar").get_value()))
+	
 	#Checks for player health every frame
 	if self.damage_taken >= self.max_life:
 		self.kill()
@@ -285,7 +295,6 @@ func leave_neighbor(body):
 #Called when a new item enters the player item_area
 func enter_item(body):
 	if body extends KinematicBody2D:
-		print("entered item")
 		nearby_items.append(body) #For now only adds, but needs to check the body type
 
 #Removes a item from nearby_bodies array
@@ -305,17 +314,30 @@ func take_damage(attacker, d):
 	d = max(0, d - self.defense)
 	if d <= 0:
 		return
+	d = ceil(d)
 	self.damage_taken += d
 	
 	#Update lifebar with tween
 	var tween = player_info.get_node('lifebar/change_life_tween')
-	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", old_damage_taken, (max(0,max_life - damage_taken)), .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", self.max_life - old_damage_taken, (max(0,max_life - damage_taken)), .1, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 	
 	if self.damage_taken >= self.max_life:
 		attacker.fans = max(0, attacker.fans + self.haters/30)
 		attacker.haters = max(0, attacker.fans + self.fans/20)
 		self.kill()
+
+#Heal player
+func heal(h):
+	var old_damage_taken = self.damage_taken
+	audience_bar.use_item(self)
+	h = ceil(h)
+	self.damage_taken = max(0, self.damage_taken - h)
+	#Update lifebar with tween
+	var tween = player_info.get_node('lifebar/change_life_tween')
+	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", (max_life-old_damage_taken), \
+								max_life - damage_taken, .1, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	tween.start()
 
 #Make player drop current weapon
 func drop_weapon():
@@ -351,16 +373,6 @@ func drop_consumable():
 
 	#Update player info consumable image
 	self.player_info.get_node("consumable").set_texture(PATCH)
-
-#Heal player
-func heal(h):
-	audience_bar.use_item(self)
-	self.damage_taken = max(0, self.damage_taken - h)
-	#Update lifebar with tween
-	var tween = player_info.get_node('lifebar/change_life_tween')
-	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", (max_life-damage_taken-h), \
-								max_life - damage_taken, .1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
 
 #Handle player death
 func kill():

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://battle/zones/basic_zone.tscn" type="PackedScene" id=1]
+
+[node name="Zone" instance=ExtResource( 1 )]
+
+tile_data = IntArray( -1, 14, 65535, 13 )
+
+

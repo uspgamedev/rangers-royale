@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://battle/zones/hexagono.tex" type="Texture" id=1]
 [ext_resource path="res://battle/zones/field_tile1.tex" type="Texture" id=2]
@@ -13,6 +13,9 @@
 [ext_resource path="res://battle/zones/lake_tile1.tex" type="Texture" id=11]
 [ext_resource path="res://battle/zones/lake_tile2.tex" type="Texture" id=12]
 [ext_resource path="res://battle/zones/lake_tile3.tex" type="Texture" id=13]
+[ext_resource path="res://battle/zones/ruins_tile1.tex" type="Texture" id=14]
+[ext_resource path="res://battle/zones/ruins_tile2.tex" type="Texture" id=15]
+[ext_resource path="res://battle/zones/ruins_tile3.tex" type="Texture" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -346,14 +349,13 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Ruin" type="Sprite" parent="."]
+[node name="Ruin1" type="Sprite" parent="."]
 
 editor/display_folded = true
-transform/pos = Vector2( 179.25, 189.072 )
-texture = ExtResource( 1 )
-modulate = Color( 0.296875, 0.2471, 0.141479, 1 )
+transform/pos = Vector2( 626.812, 66.6386 )
+texture = ExtResource( 14 )
 
-[node name="StaticBody2D1" type="StaticBody2D" parent="Ruin"]
+[node name="StaticBody2D1" type="StaticBody2D" parent="Ruin1"]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -366,7 +368,57 @@ constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruin/StaticBody2D1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruin1/StaticBody2D1"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Ruin2" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 726.119, 65.2782 )
+texture = ExtResource( 15 )
+
+[node name="StaticBody2D1" type="StaticBody2D" parent="Ruin2"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruin2/StaticBody2D1"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Ruin3" type="Sprite" parent="."]
+
+editor/display_folded = true
+transform/pos = Vector2( 654.02, 164.585 )
+texture = ExtResource( 16 )
+
+[node name="StaticBody2D1" type="StaticBody2D" parent="Ruin3"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruin3/StaticBody2D1"]
 
 shape = SubResource( 1 )
 trigger = false
