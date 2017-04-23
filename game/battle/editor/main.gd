@@ -11,6 +11,7 @@ onready var zones = get_node("Map/Zones")
 
 var placements
 var current_zone
+var at_valid_tile
 
 func _ready():
 	update_placements_view()
@@ -32,16 +33,26 @@ func _input(event):
 			if dist < mindist:
 				mindist = dist
 				nearest = target
-		if nearest != null:
+		self.at_valid_tile = (nearest != null)
+		if self.current_zone.get_pos() != nearest and self.at_valid_tile:
+			for tile in self.current_zone.get_used_cells():
+				var zone = self.current_zone
+				var pos = nearest + zone.map_to_world(tile) + Vector2(32,24)
+				var other = zones.get_zone_at(pos, false)
+				if other != zone and other != null:
+					self.at_valid_tile = false
+					return
 			self.current_zone.set_pos(nearest)
+				
 
 func local_to_global(zone, tile):
-	return zones.get_tile_at(zone.get_pos())
+	return self.zones.get_tile_at(zone.get_pos() + Vector2(1,1), false) + tile
 
 func update_placements_view():
 	self.placements = valid_placements()
-	for placement in self.placements:
-		zones.set_cellv(placement, 0)
+	at_valid_tile = false
+	#for placement in self.placements:
+	#	zones.set_cellv(placement, 0)
 
 func valid_placements():
 	var placements = {}
@@ -50,7 +61,7 @@ func valid_placements():
 	var maxpos = Vector2()
 	for zone in zones.get_children():
 		for cell in zone.get_used_cells():
-			invalid.append(cell)
+			invalid.append(local_to_global(zone, cell))
 			if cell.x < minpos.x:
 				minpos.x = cell.x
 			if cell.y < minpos.y:

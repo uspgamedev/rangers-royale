@@ -18,8 +18,10 @@ func generate_border():
 			var point = zone.get_pos() + zone.map_to_world(tile)
 			set_cellv(get_tile_at(point), -1)
 
-func get_tile_at(pos):
-	return world_to_map(screen_to_map(pos))
+func get_tile_at(pos, fix=true):
+	if fix:
+		pos = screen_to_map(pos)
+	return world_to_map(pos)
 
 func screen_to_map(point):
 	return point + camera.get_pos() - OS.get_window_size()/2
