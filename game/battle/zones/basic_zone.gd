@@ -11,6 +11,9 @@ onready var focused = false
 onready var grabbed = false
 onready var diff = Vector2(0, 0)
 
+var shaking = false
+var stable_pos = null
+
 const NEIGHBORS = [
 	[Vector2(0,1), Vector2(0,-1), Vector2(1,0), Vector2(-1,0), Vector2(-1,-1), Vector2(-1,1)],
 	[Vector2(0,1), Vector2(0,-1), Vector2(1,0), Vector2(-1,0), Vector2(1,1), Vector2(1,-1)]
@@ -26,7 +29,14 @@ func _fixed_process(delta):
 		var mouse_pos = get_viewport().get_mouse_pos()
 		diff = mouse_pos - new_mouse_pos
 		self.set_pos(self.get_pos() + diff)
+	if self.shaking > 0:
+		self.set_pos(self.stable_pos + 2*cos(self.shaking*50)*Vector2(1, 0))
+		self.shaking -= delta
 	new_mouse_pos = get_viewport().get_mouse_pos()
+
+func shake(time):
+	self.shaking = time
+	self.stable_pos = get_pos()
 
 func map_to_global_world(tile):
 	return get_pos() + map_to_world(tile) + Vector2(32, 24)
