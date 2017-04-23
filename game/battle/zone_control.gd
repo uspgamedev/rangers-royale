@@ -7,7 +7,6 @@ func _ready():
 	pass
 
 func generate_border():
-	print("heave ho!")
 	clear()
 	for zone in get_children():
 		var off = Vector2(0,0)
