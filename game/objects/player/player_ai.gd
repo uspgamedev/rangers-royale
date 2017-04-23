@@ -77,7 +77,6 @@ class Attack:
 		attacker.fans += target.get_node('AI').haters/50
 		attacker.haters += target.get_node('AI').fans/50
 	func act(player, ai):
-		print("attacking")
 		target.get_node('AI').take_damage(attacker, ai.power)
 
 #Pickup a given item and equip/hold it
@@ -87,7 +86,6 @@ class Pickup:
 	func _init(_item).(1):
 		item = _item
 	func act(player, ai):
-		print("picking item up")
 		var item_info = item.get_node("Info")
 		if item_info.type == ITEM_TYPE.WEAPON:
 			#Drop previously equipped weapon, if it exists
@@ -126,7 +124,6 @@ class Activate:
 	func _init().(2):
 		pass
 	func act(player, ai):
-		print("activating item")
 		ai.consumable_holding.get_node("Info").activate(player, ai)
 
 #USEFUL OBJECTIVE FUNCTIONS
@@ -241,7 +238,6 @@ func _fixed_process(delta):
 
 #Creates a new range_area with radius 'r'. Removes previously range_area
 func create_new_range(r):
-	print("creating a new range")
 
 	#Remove previously range_area
 	var old_range_area = player_node.get_node('range_area')
