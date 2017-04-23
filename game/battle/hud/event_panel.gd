@@ -2,8 +2,9 @@ extends Panel
 
 const DUMMY_EVENT = preload("res://battle/events/event_base.tscn")
 const EVENTS = [
-	preload("res://battle/events/medkit_event.tscn"),
-	preload("res://battle/events/random_weapon_event.tscn")
+	#preload("res://battle/events/medkit_event.tscn"),
+	#preload("res://battle/events/random_weapon_event.tscn"),
+	preload("res://battle/events/close_zone_event.tscn")
 ]
 
 onready var events = get_node("Events")
