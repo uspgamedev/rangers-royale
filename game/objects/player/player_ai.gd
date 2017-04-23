@@ -92,17 +92,27 @@ class Pickup:
 			ai.weapon_equipped = item
 			ai.power = item_info.power
 			ai.create_new_range(item_info.range_radius)
+			
+			#Update player info weapon image
+			ai.player_info.get_node("weapon").set_texture(item.get_node("Sprite").get_texture())
 		if item_info.type == ITEM_TYPE.ARMOR:
 			#Drop previously equipped armor, if it exists
 			ai.drop_armor()
 			
 			ai.armor_equipped = item
 			ai.defense = item_info.defense
+			
+			#Update player info armor image
+			ai.player_info.get_node("armor").set_texture(item.get_node("Sprite").get_texture())
 		elif item_info.type == ITEM_TYPE.CONSUMABLE:
 			#Drop previously consumable its holding, if it exists
 			ai.drop_consumable()
 			
 			ai.consumable_holding = item
+			
+			#Update player info consumable image
+			ai.player_info.get_node("consumable").set_texture(item.get_node("Sprite").get_texture())
+			
 		item.get_parent().remove_child(item) #Remove item from the map
 
 #Activate item player is holding
@@ -184,6 +194,9 @@ func _ready():
 	var lifebar = player_info.get_node('lifebar')
 	lifebar.set_max(max_life)
 	lifebar.set_value(max_life)
+	
+	#Setup Player Info
+	player_info.get_node("name").set_text(self.name)
 	
 func _fixed_process(delta):
 	#If player doesn't have a range_area, create an unarmed range area
@@ -278,6 +291,9 @@ func drop_weapon():
 	self.power = self.default_unarmed_power
 	self.create_new_range(default_unarmed_range)
 	
+	#Update player info weapon image
+	self.player_info.get_node("weapon").set_texture("res://objects/item/patch.tex")
+	
 #Make player drop current armor
 func drop_armor():
 	if not self.armor_equipped:
@@ -286,6 +302,9 @@ func drop_armor():
 	#Set default values for power and range
 	self.armor_equipped = null
 	self.defense = self.default_unarmed_defense
+	
+	#Update player info armor image
+	self.player_info.get_node("armor").set_texture("res://objects/item/patch.tex")
 
 #Make player drop current consumable
 func drop_consumable():
@@ -294,6 +313,8 @@ func drop_consumable():
 	
 	self.consumable_holding = null
 
+	#Update player info consumable image
+	self.player_info.get_node("consumable").set_texture("res://objects/item/patch.tex")
 
 #Heal player
 func heal(h):
