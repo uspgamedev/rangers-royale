@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="297mm"
-   height="210mm"
-   viewBox="0 0 1052.3622 744.09448"
+   width="1050"
+   height="300"
+   viewBox="0 0 1050 299.99999"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -35,10 +35,10 @@
          id="stop5834" />
     </linearGradient>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-2">
       <feFlood
          id="feFlood5582"
@@ -67,10 +67,10 @@
          in="SourceGraphic" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-3">
       <feFlood
          id="feFlood5593"
@@ -99,10 +99,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-4">
       <feFlood
          id="feFlood5604"
@@ -131,10 +131,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-5">
       <feFlood
          id="feFlood5615"
@@ -163,10 +163,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-6">
       <feFlood
          id="feFlood5626"
@@ -195,10 +195,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-7">
       <feFlood
          id="feFlood5637"
@@ -227,10 +227,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-8">
       <feFlood
          id="feFlood5648"
@@ -259,10 +259,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-9">
       <feFlood
          id="feFlood5659"
@@ -291,10 +291,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-10">
       <feFlood
          id="feFlood5670"
@@ -323,10 +323,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-11">
       <feFlood
          id="feFlood5681"
@@ -358,10 +358,10 @@
        id="gradient-0"
        gradientTransform="scale(0.93059961,1.074576)"
        cx="275.09146"
-       cy="238.2335"
+       cy="238.23351"
        fx="275.09146"
-       fy="238.2335"
-       r="238.2335"
+       fy="238.23351"
+       r="238.23351"
        gradientUnits="userSpaceOnUse">
       <stop
          id="stop5692"
@@ -384,10 +384,10 @@
        y2="275.2457"
        gradientUnits="userSpaceOnUse" />
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-2-3">
       <feFlood
          id="feFlood4529"
@@ -416,10 +416,10 @@
          in="SourceGraphic" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-3-6">
       <feFlood
          id="feFlood4540"
@@ -448,10 +448,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-4-7">
       <feFlood
          id="feFlood4551"
@@ -480,10 +480,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-5-5">
       <feFlood
          id="feFlood4562"
@@ -512,10 +512,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-6-3">
       <feFlood
          id="feFlood4573"
@@ -544,10 +544,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-7-5">
       <feFlood
          id="feFlood4584"
@@ -576,10 +576,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-8-6">
       <feFlood
          id="feFlood4595"
@@ -608,10 +608,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-9-2">
       <feFlood
          id="feFlood4606"
@@ -640,10 +640,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-10-9">
       <feFlood
          id="feFlood4617"
@@ -672,10 +672,10 @@
          in="offset" />
     </filter>
     <filter
-       y="-100%"
-       x="-100%"
-       width="300%"
-       height="300%"
+       y="-1"
+       x="-1"
+       width="3"
+       height="3"
        id="shadow-11-1">
       <feFlood
          id="feFlood4628"
@@ -757,9 +757,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="539.36017"
-     inkscape:cy="471.97188"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="585.90879"
+     inkscape:cy="263.72192"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -768,7 +768,8 @@
      inkscape:window-height="1029"
      inkscape:window-x="0"
      inkscape:window-y="25"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     units="px" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -777,7 +778,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -785,10 +786,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-308.26772)">
+     transform="translate(0,-752.36222)">
     <g
        id="g4736"
-       transform="matrix(0.51268361,0,0,0.51268361,24.933178,469.89778)">
+       transform="matrix(0.51268361,0,0,0.51268361,24.933178,773.89778)">
       <circle
          style="fill:url(#gradient-0-2)"
          id="circle4643"
@@ -867,7 +868,7 @@
     <flowRoot
        xml:space="preserve"
        id="flowRoot4265"
-       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:'Harry P';font-style:normal;font-weight:normal;font-size:30px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:'Harry P, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr"><flowRegion
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:125%;font-family:'Harry P';-inkscape-font-specification:'Harry P, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><flowRegion
          id="flowRegion4267"><rect
            id="rect4269"
            width="323.24881"
@@ -877,18 +878,18 @@
          id="flowPara4271" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4159"
-       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Orbitron;font-style:normal;font-weight:bold;font-size:60px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:'Orbitron Bold';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"><flowRegion
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:60px;line-height:125%;font-family:Orbitron;-inkscape-font-specification:'Orbitron Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><flowRegion
          id="flowRegion4161"><rect
            id="rect4163"
            width="488.91382"
            height="127.27922"
            x="296.98483"
            y="239.01822"
-           style="-inkscape-font-specification:'Orbitron Bold';font-family:Orbitron;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;font-size:60px;" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:60px;font-family:Orbitron;-inkscape-font-specification:'Orbitron Bold'" /></flowRegion><flowPara
          id="flowPara4165" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4167"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:30px;line-height:125%;font-family:Orbitron;-inkscape-font-specification:'Orbitron Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:30px;line-height:125%;font-family:Orbitron;-inkscape-font-specification:'Orbitron Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        transform="translate(0,308.26772)"><flowRegion
          id="flowRegion4169"><rect
            id="rect4171"
@@ -896,7 +897,7 @@
            height="66.670067"
            x="363.65491"
            y="257.20096"
-           style="-inkscape-font-specification:'Orbitron Bold';font-family:Orbitron;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Orbitron;-inkscape-font-specification:'Orbitron Bold'" /></flowRegion><flowPara
          id="flowPara4173" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4175"
@@ -911,19 +912,19 @@
          id="flowPara4181" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4193"
-       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Orbitron;font-style:normal;font-weight:bold;font-size:80px;line-height:125%;letter-spacing:0px;word-spacing:0px;-inkscape-font-specification:'Orbitron, Bold';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"><flowRegion
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:80px;line-height:125%;font-family:Orbitron;-inkscape-font-specification:'Orbitron, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"><flowRegion
          id="flowRegion4195"><rect
            id="rect4197"
            width="463.66"
            height="108.08632"
            x="313.14728"
            y="231.94714"
-           style="-inkscape-font-specification:'Orbitron, Bold';font-family:Orbitron;font-weight:bold;font-style:normal;font-stretch:normal;font-variant:normal;font-size:80px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%;" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:80px;line-height:125%;font-family:Orbitron;-inkscape-font-specification:'Orbitron, Bold';text-align:start;writing-mode:lr-tb;text-anchor:start" /></flowRegion><flowPara
          id="flowPara4201" /></flowRoot>    <flowRoot
        xml:space="preserve"
        id="flowRoot4203"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:80px;line-height:125%;font-family:Orbitron;-inkscape-font-specification:'Orbitron, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:url(#linearGradient5810);fill-opacity:1;stroke:#2b3d41;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       transform="translate(-35.355339,353.43996)"><flowRegion
+       transform="translate(-35.355339,657.43996)"><flowRegion
          id="flowRegion4205"
          style="fill:url(#linearGradient4311);fill-opacity:1"><rect
            id="rect4207"
