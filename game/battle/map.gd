@@ -52,3 +52,19 @@ func closest_player(pos, reject = {}):
 			mindist = dist
 			closest = player
 	return closest
+
+class DistanceComparator:
+	var ref
+	func _init(ref):
+		self.ref = ref
+	func _compare(lhs, rhs):
+		return ref.distance_to(lhs) < ref.distance_to(rhs)
+
+func find_items_by_distance(pos):
+	var mindist = 1024 * 1024
+	var result = []
+	for item in items.get_children():
+		result.append(item)
+	result.sort_custom(DistanceComparator.new(pos), "_compare")
+	return result
+
