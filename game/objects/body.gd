@@ -4,7 +4,7 @@ extends KinematicBody2D
 const DIR = preload("res://definitions/directions.gd")
 const CONST = preload("res://definitions/constants.gd")
 
-const ACC = 16
+const ACC = 8
 const DEACC = 0.75
 const SPEEDLIMIT = ACC * 5
 

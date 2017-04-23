@@ -158,7 +158,7 @@ class Default:
 			return action
 		
 		#Small chance to change direction
-		if randf()<.1:
+		if randf()<.01:
 			dir = DIRS.NONE
 			if randf()< .5:
 				dir += DIRS.RIGHT
