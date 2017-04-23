@@ -88,3 +88,18 @@ func get_closest_wall(pos):
 			mindist = dist
 			closest = wallpos
 	return closest
+
+func closest_safer_tile(pos, ref_danger):
+	var valid = []
+	for zone in zones.get_children():
+		if zone.danger < ref_danger:
+			for tile in zone.get_used_cells():
+				valid.append(zone.map_to_global_world(tile))
+	var mindist = 1024 * 1024
+	var closest = null
+	for target in valid:
+		var dist = target.distance_to(pos)
+		if dist < mindist:
+			mindist = dist
+			closest = target
+	return closest
