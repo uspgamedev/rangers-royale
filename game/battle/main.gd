@@ -13,7 +13,7 @@ onready var event_panel = get_node("HUD/EventPanel")
 func _ready():
 	zones.generate_border()
 	yield(get_tree(), "fixed_frame")
-	for i in range(zones.get_child_count()):
+	for i in range(2*zones.get_child_count()):
 		map.drop_player()
 
 func _on_event_chosen():

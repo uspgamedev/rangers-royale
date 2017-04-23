@@ -192,10 +192,18 @@ class Default:
 		if action:
 			return action
 		
+		var move
 		if ai.on_cooldown <= 0:
-			return Move.new(ai.direction_to_closest_player(player))
+			move = Move.new(ai.direction_to_closest_player(player))
 		else:
-			return Move.new(-1*ai.direction_to_closest_player(player))
+			move = Move.new(-1*ai.direction_to_closest_player(player))
+		
+		var wallforce = (player.get_pos() - ai.map_node.get_closest_wall(player.get_pos()))
+		wallforce /= wallforce.length()
+		move.dir += wallforce
+		move.dir = move.dir.normalized()
+		
+		return move
 
 var cur_objective = Default.new()
 

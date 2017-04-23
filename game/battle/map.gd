@@ -76,3 +76,14 @@ func find_items_by_distance(pos):
 	result.sort_custom(DistanceComparator.new(pos), "_compare")
 	return result
 
+func get_closest_wall(pos):
+	var valid = zones.get_used_cells()
+	var mindist = 1024 * 1024
+	var closest = null
+	for wall in valid:
+		var wallpos = zones.map_to_world(wall) + Vector2(32,24)
+		var dist = wallpos.distance_to(pos)
+		if dist < mindist:
+			mindist = dist
+			closest = wallpos
+	return closest
