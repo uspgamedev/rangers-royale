@@ -13,15 +13,15 @@ func _input(event):
 		var player = get_player_at(event.pos)
 		if player != self.focused_player:
 			if self.focused_player != null:
-				self.focused_player.get_node("player_info").hide()
+				self.focused_player.get_node("CanvasLayer").get_node("player_info").hide()
 				self.focused_player.get_node("AI").disconnect("died", self, "_on_player_death")
 			if player != null:
-				player.get_node("player_info").show()
+				player.get_node("CanvasLayer").get_node("player_info").show()
 				player.get_node("AI").connect("died", self, "_on_player_death")
 			self.focused_player = player
 
 func _on_player_death(player):
-	self.focused_player.get_node("player_info").hide()
+	self.focused_player.get_node("CanvasLayer").get_node("player_info").hide()
 	self.focused_player.get_node("AI").disconnect("died", self, "_on_player_death")
 	self.focused_player = null
 
