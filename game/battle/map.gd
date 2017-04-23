@@ -34,3 +34,21 @@ func players_in_zone(zone):
 		if self.zones.get_zone_at(player.get_pos()) == zone:
 			result.append(player)
 	return result
+
+func all_players(reject = {}):
+	var result = []
+	for player in players():
+		if not reject.has(player):
+			result.append(player)
+	return result
+
+func closest_player(pos, reject = {}):
+	var valid = all_players(reject)
+	var mindist = 1024 * 1024
+	var closest = null
+	for player in valid:
+		var dist = player.get_pos().distance_to(pos)
+		if dist < mindist:
+			mindist = dist
+			closest = player
+	return closest
