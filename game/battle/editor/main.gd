@@ -84,7 +84,8 @@ func _input(event):
 		battle.add_child(map)
 		yield(get_tree(), "fixed_frame")
 		yield(get_tree(), "fixed_frame")
-		replace_by(battle)
+		queue_free()
+		get_parent().add_child(battle)
 
 func local_to_global(zone, tile):
 	return self.zones.get_tile_at(zone.get_pos() + Vector2(1,1), false) + tile

@@ -11,14 +11,14 @@ font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 
 font/size = 18
 font/use_mipmaps = false
 font/use_filter = false
 font/font = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 
 font/size = 32
 font/use_mipmaps = false
@@ -92,7 +92,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 180.0
 margin/bottom = 22.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Total time"
 percent_visible = 1.0
 lines_skipped = 0
@@ -109,7 +109,7 @@ margin/left = 180.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 39.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "1337"
 align = 2
 percent_visible = 1.0
@@ -139,7 +139,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 180.0
 margin/bottom = 22.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Nº of survivors"
 percent_visible = 1.0
 lines_skipped = 0
@@ -156,7 +156,7 @@ margin/left = 180.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 39.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "1337"
 align = 2
 percent_visible = 1.0
@@ -186,7 +186,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 180.0
 margin/bottom = 22.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Audience score"
 percent_visible = 1.0
 lines_skipped = 0
@@ -203,7 +203,7 @@ margin/left = 180.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 39.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "1337"
 align = 2
 percent_visible = 1.0
@@ -238,7 +238,7 @@ margin/left = 180.0
 margin/top = 200.0
 margin/right = 0.0
 margin/bottom = 219.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "1337"
 align = 2
 percent_visible = 1.0
@@ -261,5 +261,6 @@ margin/top = 128.0
 margin/right = -64.0
 margin/bottom = 0.0
 texture = ExtResource( 3 )
+stretch_mode = 0
 
 

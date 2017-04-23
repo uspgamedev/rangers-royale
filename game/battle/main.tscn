@@ -37,6 +37,13 @@ wait_time = 0.5
 one_shot = false
 autostart = true
 
+[node name="EndGameTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
 editor/display_folded = true
@@ -46,6 +53,8 @@ editor/display_folded = true
 zones_path = NodePath("../Map/Zones")
 
 [connection signal="timeout" from="EventDrawTimer" to="." method="_draw_event_time"]
+
+[connection signal="timeout" from="EndGameTimer" to="." method="_endgame"]
 
 
 [editable path="HUD"]

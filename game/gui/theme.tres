@@ -6,10 +6,10 @@ content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-bg_color = Color( 0.180392, 0.380392, 0.443137, 0.392157 )
+bg_color = Color( 0.168627, 0.239216, 0.254902, 0.392157 )
 light_color = Color( 0.843137, 0.992157, 0.92549, 0.392157 )
 dark_color = Color( 0.168627, 0.239216, 0.254902, 0.392157 )
-border_size = 10
+border_size = 0
 border_blend = true
 draw_bg = true
 
