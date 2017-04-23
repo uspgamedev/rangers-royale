@@ -24,6 +24,7 @@ func _on_player_death(player):
 	self.focused_player.get_node("CanvasLayer").get_node("player_info").hide()
 	self.focused_player.get_node("AI").disconnect("died", self, "_on_player_death")
 	self.focused_player = null
+	self.get_node("../DeathSFX").play()
 
 func screen_to_map(point):
 	return point + self.camera.get_pos() - OS.get_window_size()/2

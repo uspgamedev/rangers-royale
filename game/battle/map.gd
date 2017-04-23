@@ -8,6 +8,8 @@ onready var items = get_node("Items")
 onready var players = get_node("Players")
 onready var camera = get_node("Camera")
 
+onready var drop_sfx = get_node("DropSFX")
+
 func _ready():
 	randomize()
 
@@ -16,6 +18,7 @@ func drop_item(item, pos):
 	drop.item = item
 	drop.target_pos = pos
 	add_child(drop)
+	drop_sfx.play()
 	yield(drop, "item_dropped")
 	items.add_child(item)
 
