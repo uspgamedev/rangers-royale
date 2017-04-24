@@ -9,11 +9,9 @@
 
 ### BGM
 
-+ [ ] Intense battle theme
++ [X] Intense battle theme
 + [X] Editor theme
-+ [ ] Opening fanfare
-+ [ ] Win theme
-+ [ ] Loss theme
++ [X] Opening fanfare
 
 ## Features
 
@@ -22,7 +20,7 @@
 + [X] Load from editor
 + [X] Events
 + [X] Target picker
-+ [ ] Reputation
++ [X] Reputation
 + [X] Audience
 
 #### Events
