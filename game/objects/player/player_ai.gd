@@ -5,6 +5,7 @@ const ITEM_TYPE = preload("res://definitions/item_enums.gd")
 const SCORE = preload("res://definitions/score.gd")
 const RANGE_AREA = preload("res://objects/player/range_area.tscn")
 const PATCH = preload("res://objects/item/patch.tex")
+const NAMES = preload("res://definitions/names.gd")
 
 var player_node #Reference to the player
 var player_info #Reference to player info panel
@@ -17,7 +18,7 @@ var default_unarmed_defense = randf()*3   #Defense of "unarmed weapon"
 
 var max_life = 30 #Player maxlife
 var damage_taken = 0 #Damage taken by player
-var name = "dummy" #Name of player
+onready var name = NAMES.NAMES[randi()%NAMES.NAMES.size()] #Name of player
 var afiliation = randi()%2 #Number of afiliation
 var power = default_unarmed_power #Damage player inflicts when attacking
 var defense = default_unarmed_defense #Damage armor from player blocks from attacks
