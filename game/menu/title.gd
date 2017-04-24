@@ -1,6 +1,9 @@
 extends TextureFrame
 
 const EDITOR = preload("res://battle/editor/main.tscn")
+const Protip = preload("res://gui/protip.gd")
+
+onready var global_state = get_node("/root/GlobalState")
 
 onready var fade = get_node("Fader")
 onready var tween = get_node("Tween")
@@ -12,6 +15,8 @@ func _ready():
 	tween.start()
 	yield(tween, "tween_complete")
 	set_process_input(true)
+	if not global_state.flags.has("intro_msg"):
+		get_parent().add_child(Protip.show_protip("Click with the mouse\nto begin!"))
 
 func _input(event):
 	if event.is_action_pressed("ui_click"):
