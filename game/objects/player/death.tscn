@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Particles2D
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	set_emitting(true)
+"
+
+[node name="Particles2D" type="Particles2D"]
+
+config/amount = 8
+config/lifetime = 0.3
+config/emit_timeout = 0.3
+config/emitting = false
+config/process_mode = 1
+params/direction = 180.0
+params/spread = 90.0
+params/linear_velocity = 80.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 40.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 6.0
+params/final_size = 3.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/spread = 0.1
+color/color = Color( 0.484375, 0.0113525, 0.0113525, 1 )
+script/script = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]
+
+
