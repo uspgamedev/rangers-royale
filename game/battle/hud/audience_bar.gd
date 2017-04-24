@@ -1,5 +1,7 @@
 extends ProgressBar
 
+const GLOBAL = preload('res://campaign/GlobalState.tscn')
+
 onready var players = get_node('../../Map/Players')
 var enjoyment = 0
 var amount
@@ -7,6 +9,7 @@ var end = false
 
 onready var hoes = get_node("Hoes")
 onready var cheering = get_node("Cheering")
+onready var global = GLOBAL.instance()
 
 signal epic_fail
 signal intense
@@ -24,8 +27,11 @@ func _fixed_process(delta):
 		if (players.get_child_count() <= 0):
 			catastrophe()
 		else:
+			global.winner = players.get_child(0)
 			player_win(players.get_child(0).get_node('AI'))
 		end = true
+	if (global.winner != null):
+		print(global.winner.get_name())
 
 func catastrophe():
 	#print("CATASTROPHE")

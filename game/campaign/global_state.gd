@@ -6,3 +6,5 @@ var reputation = 10000*BLING_LEVEL
 
 var shortcuts = {}
 var flags = {}
+
+var winner = null
