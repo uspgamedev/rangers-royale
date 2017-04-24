@@ -9,6 +9,7 @@ func _ready():
 
 func _activate():
 	var map = zone.get_parent().get_parent()
+	map.play_close_zone_sfx()
 	for player in map.players_in_zone(zone):
 		player.get_node("AI").kill()
 	for item in map.items_in_zone(zone):

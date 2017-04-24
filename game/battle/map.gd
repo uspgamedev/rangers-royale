@@ -9,6 +9,7 @@ onready var players = get_node("Players")
 onready var camera = get_node("Camera")
 
 onready var drop_sfx = get_node("DropSFX")
+onready var close_sfx = get_node("CloseSFX")
 
 func _ready():
 	randomize()
@@ -32,6 +33,9 @@ func drop_player():
 	var pos = zone.map_to_global_world(tile)
 	player.set_pos(pos)
 	players.add_child(player)
+
+func play_close_zone_sfx():
+	close_sfx.play()
 
 func players_in_zone(zone):
 	var result = []
