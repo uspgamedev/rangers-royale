@@ -2,6 +2,7 @@ extends Node2D
 
 const PLAYER = preload("res://objects/player.tscn")
 const DROP = preload("res://battle/map/drop.tscn")
+const BLOOD = preload("res://objects/player/death.tscn")
 
 onready var zones = get_node("Zones")
 onready var items = get_node("Items")
@@ -36,7 +37,14 @@ func drop_player():
 		pos = zone.random_pos()
 	spawn_points[pos] = true
 	player.set_pos(pos)
+	player.get_node("AI").connect("died", self, "_player_died")
 	players.add_child(player)
+
+func _player_died(player):
+	var blood = BLOOD.instance()
+	blood.set_pos(player.get_parent().get_pos())
+	add_child(blood)
+	print("hue")
 
 func play_close_zone_sfx():
 	close_sfx.play()

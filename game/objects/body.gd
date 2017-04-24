@@ -13,9 +13,13 @@ signal speed_changed(speed)
 var speed = Vector2()
 
 onready var animation = get_node("Sprite/Animation")
+onready var sprite = get_node('Sprite')
 
 func _ready():
   set_fixed_process(true)
+  var color = Color(randf(), randf(), randf())
+  sprite.get_material().set_shader_param("col", color)
+  print(color)
 
 func _fixed_process(delta):
     pvt_apply_speed(delta)

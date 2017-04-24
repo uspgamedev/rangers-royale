@@ -48,14 +48,19 @@ func _input(event):
 			if dist < mindist:
 				mindist = dist
 				nearest = target
-		self.at_valid_tile = (nearest != null)
 		# Now disconsider positions that go into other zones
-		if self.current_zone.get_pos() != nearest and self.at_valid_tile:
+		if self.current_zone.get_pos() != nearest and nearest != null:
+			self.at_valid_tile = true
+			self.current_zone.set_pos(nearest)
+			self.current_zone.focus()
+			self.current_zone.set_opacity(1)
 			var zone = self.current_zone
 			for tile in zone.get_used_cells():
 				var pos = nearest + zone.map_to_world(tile) + Vector2(32,24)
 				var other = zones.get_zone_at(pos, false)
 				if other != zone and other != null:
+					self.current_zone.unfocus()
+					self.current_zone.set_opacity(0.2)
 					self.at_valid_tile = false
 					return
 			var check = false
@@ -65,8 +70,10 @@ func _input(event):
 				if other != zone and other != null:
 					check = true
 			if check:
-				self.current_zone.set_pos(nearest)
+				pass
 			else:
+				self.current_zone.unfocus()
+				self.current_zone.set_opacity(0.2)
 				self.at_valid_tile = false
 	elif event.is_action_pressed("ui_click") and self.at_valid_tile:
 		grab_zone()
