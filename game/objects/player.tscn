@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://objects/body.tscn" type="PackedScene" id=1]
-[ext_resource path="res://objects/player/player-sheet.tex" type="Texture" id=2]
-[ext_resource path="res://objects/player/player_ai.gd" type="Script" id=3]
-[ext_resource path="res://objects/player/item_area.gd" type="Script" id=4]
-[ext_resource path="res://objects/player/player_info.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/player.gd" type="Script" id=2]
+[ext_resource path="res://objects/player/player-sheet.tex" type="Texture" id=3]
+[ext_resource path="res://objects/player/player_ai.gd" type="Script" id=4]
+[ext_resource path="res://objects/player/item_area.gd" type="Script" id=5]
+[ext_resource path="res://objects/player/player_info.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 
@@ -52,9 +53,11 @@ radius = 32.0
 
 [node name="Player" instance=ExtResource( 1 )]
 
+script/script = ExtResource( 2 )
+
 [node name="Sprite" parent="."]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
@@ -71,7 +74,7 @@ autoplay = "moving"
 
 [node name="AI" type="Node" parent="."]
 
-script/script = ExtResource( 3 )
+script/script = ExtResource( 4 )
 
 [node name="item_area" type="Area2D" parent="."]
 
@@ -85,7 +88,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 4
 collision/mask = 4
-script/script = ExtResource( 4 )
+script/script = ExtResource( 5 )
 
 [node name="circle" type="CollisionShape2D" parent="item_area"]
 
@@ -119,7 +122,7 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="player_info" parent="CanvasLayer" instance=ExtResource( 5 )]
+[node name="player_info" parent="CanvasLayer" instance=ExtResource( 6 )]
 
 visibility/visible = false
 margin/left = 0.0

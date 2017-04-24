@@ -14,14 +14,9 @@ var speed = Vector2()
 
 onready var animation = get_node("Sprite/Animation")
 onready var sprite = get_node('Sprite')
-var color = Color(1,1,1,1)
 
 func _ready():
   set_fixed_process(true)
-  var material = load("res://objects/player/player.tres").duplicate(true)
-  material.set_shader_param("col", color)
-  sprite.set_material(material)
-  print(color)
 
 func _fixed_process(delta):
     pvt_apply_speed(delta)
