@@ -39,7 +39,7 @@ func drop_player():
 		pos = zone.random_pos()
 	spawn_points[pos] = true
 	player.set_pos(pos)
-	player.color = Color(randf()*0.5, randf()*0.5, randf()*0.5)
+	player.color = Color(0.2+randf()*0.5, 0.2+randf()*0.5, 0.2+randf()*0.5)
 	player.get_node("AI").connect("died", self, "_player_died")
 	players.add_child(player)
 

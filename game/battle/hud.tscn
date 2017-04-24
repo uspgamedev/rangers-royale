@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://battle/hud/event_panel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://battle/hud/audience_bar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://battle/hud/news_ticker.tscn" type="PackedScene" id=3]
+[ext_resource path="res://battle/hud/frag_list.tscn" type="PackedScene" id=4]
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -16,5 +17,7 @@ scale = Vector2( 1, 1 )
 [node name="AudienceBar" parent="." instance=ExtResource( 2 )]
 
 [node name="NewsTicker" parent="." instance=ExtResource( 3 )]
+
+[node name="FragList" parent="." instance=ExtResource( 4 )]
 
 
