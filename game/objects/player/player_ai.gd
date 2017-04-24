@@ -11,7 +11,7 @@ var player_info #Reference to player info panel
 var map_node #Reference to the game map (map sets when creating the player)
 onready var audience_bar = get_node('../../../../HUD/AudienceBar')
 
-var default_unarmed_range = 40 + 10*randf() #Ranged of "unarmed weapon"
+var default_unarmed_range = 10 + 5*randf() #Ranged of "unarmed weapon"
 var default_unarmed_power = 5 + randf()*3   #Power of "unarmed weapon"
 var default_unarmed_defense = randf()*3   #Defense of "unarmed weapon"
 
