@@ -6,6 +6,7 @@ var queue = []
 var idle = true
 
 onready var global_state = get_node("/root/GlobalState")
+onready var logo = get_node("Logo")
 
 func _ready():
 	global_state.shortcuts["newsticker"] = self
@@ -27,6 +28,7 @@ func _next_text(unused1=null, unused2=null):
 		var label = MSG.instance()
 		label.set_text(msg)
 		add_child(label)
+		move_child(label, 0)
 		label.get_node("Tween").connect("tween_complete", self, "_next_text")
 	else:
 		idle = true
