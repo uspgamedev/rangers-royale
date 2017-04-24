@@ -21,10 +21,10 @@ func _ready():
 func _fixed_process(delta):
 	check_status(delta)
 	if (players.get_child_count() <= 1 and !end):
-		if (players.get_child_count() <= 0 and !end):
+		if (players.get_child_count() <= 0):
 			catastrophe()
 		else:
-			player_win(players.get_child(get_child_count() - 1).get_node('AI'))
+			player_win(players.get_child(0).get_node('AI'))
 		end = true
 
 func catastrophe():
