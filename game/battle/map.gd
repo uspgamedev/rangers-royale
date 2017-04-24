@@ -11,6 +11,8 @@ onready var camera = get_node("Camera")
 onready var drop_sfx = get_node("DropSFX")
 onready var close_sfx = get_node("CloseSFX")
 
+var spawn_points = {}
+
 func _ready():
 	randomize()
 
@@ -28,9 +30,11 @@ func drop_player():
 	player.get_node("AI").map_node = self
 	var all_zones = self.zones.get_children()
 	var zone = all_zones[randi() % all_zones.size()]
-	var tiles = zone.get_used_cells()
-	var tile = tiles[randi() % tiles.size()]
-	var pos = zone.map_to_global_world(tile)
+	var pos = zone.random_pos()
+	while spawn_points.has(pos):
+		zone = all_zones[randi() % all_zones.size()]
+		pos = zone.random_pos()
+	spawn_points[pos] = true
 	player.set_pos(pos)
 	players.add_child(player)
 

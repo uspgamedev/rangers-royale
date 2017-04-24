@@ -45,7 +45,12 @@ func set_danger(value):
 	self.danger = value
 
 func map_to_global_world(tile):
-	return get_pos() + map_to_world(tile) + Vector2(32, 24)
+	return get_pos() + map_to_world(tile) - map_to_world(Vector2(0,0)) + Vector2(32, 24)
+
+func random_pos():
+	var tiles = get_used_cells()
+	var tile = tiles[randi() % tiles.size()]
+	return map_to_global_world(tile)
 
 func trace_border():
 	var visited = {}
