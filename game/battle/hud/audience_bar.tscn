@@ -34,7 +34,6 @@ draw_bg = true
 
 [node name="AudienceBar" type="ProgressBar"]
 
-editor/display_folded = true
 rect/rotation = 90.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -82,7 +81,7 @@ texture = ExtResource( 3 )
 stream/stream = ExtResource( 4 )
 stream/play = false
 stream/loop = false
-stream/volume_db = 0.0
+stream/volume_db = 10.0
 stream/autoplay = false
 stream/paused = false
 stream/loop_restart_time = 0.0
