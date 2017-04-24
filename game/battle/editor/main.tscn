@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://battle/editor/main.gd" type="Script" id=1]
 [ext_resource path="res://battle/editor/construction.ogg" type="AudioStream" id=2]
 [ext_resource path="res://battle/map.tscn" type="PackedScene" id=3]
 [ext_resource path="res://battle/zones/field_central.tscn" type="PackedScene" id=4]
+[ext_resource path="res://gui/theme.tres" type="Theme" id=5]
+[ext_resource path="res://gui/Exo2-Light.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+
+font/size = 24
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 6 )
 
 [node name="Main" type="Control"]
 
@@ -38,7 +47,38 @@ transform/pos = Vector2( 0, 0 )
 
 [node name="Zone" parent="Map/Zones" instance=ExtResource( 4 )]
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="Button" type="Button" parent="HUD"]
+
+anchor/left = 1
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 5 )
+margin/left = 200.0
+margin/top = 60.0
+margin/right = 20.0
+margin/bottom = 20.0
+custom_fonts/font = SubResource( 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Confirm Arena"
+flat = false
+
 [connection signal="exit_tree" from="StreamPlayer" to="StreamPlayer" method="stop"]
+
+[connection signal="pressed" from="HUD/Button" to="." method="_finish"]
 
 
 [editable path="Map"]

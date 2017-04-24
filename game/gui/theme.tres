@@ -1,21 +1,23 @@
-[gd_resource type="Theme" load_steps=2 format=1]
+[gd_resource type="Theme" load_steps=4 format=1]
 
-[sub_resource type="StyleBoxFlat" id=1]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-bg_color = Color( 0.168627, 0.239216, 0.254902, 0.392157 )
-light_color = Color( 0.843137, 0.992157, 0.92549, 0.392157 )
-dark_color = Color( 0.168627, 0.239216, 0.254902, 0.392157 )
-border_size = 0
-border_blend = true
-draw_bg = true
+[ext_resource path="res://gui/theme-button-normal.tres" type="StyleBox" id=1]
+[ext_resource path="res://gui/theme-button-pressedl.tres" type="StyleBox" id=2]
+[ext_resource path="res://gui/theme-panel.tres" type="StyleBox" id=3]
 
 [resource]
 
-Panel/styles/panel = SubResource( 1 )
+Button/colors/font_color = Color( 0.878431, 0.878431, 0.878431, 1 )
+Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+Button/colors/font_color_hover = Color( 0.941176, 0.941176, 0.941176, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = ExtResource( 1 )
+Button/styles/normal = ExtResource( 1 )
+Button/styles/pressed = ExtResource( 2 )
+Panel/styles/panel = ExtResource( 3 )
 Panel/styles/panelf = null
 Panel/styles/panelnc = null
 

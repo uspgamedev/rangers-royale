@@ -70,22 +70,23 @@ func _input(event):
 				self.at_valid_tile = false
 	elif event.is_action_pressed("ui_click") and self.at_valid_tile:
 		grab_zone()
-	elif event.is_action_pressed("ui_accept"):
-		self.current_zone.queue_free()
-		self.current_zone = null
-		set_process_input(false)
-		yield(get_tree(), "fixed_frame")
-		yield(get_tree(), "fixed_frame")
-		var map = get_node("Map")
-		remove_child(map)
-		yield(get_tree(), "fixed_frame")
-		yield(get_tree(), "fixed_frame")
-		var battle = BATTLE.instance()
-		battle.add_child(map)
-		yield(get_tree(), "fixed_frame")
-		yield(get_tree(), "fixed_frame")
-		queue_free()
-		get_parent().add_child(battle)
+
+func _finish():
+	self.current_zone.queue_free()
+	self.current_zone = null
+	set_process_input(false)
+	yield(get_tree(), "fixed_frame")
+	yield(get_tree(), "fixed_frame")
+	var map = get_node("Map")
+	remove_child(map)
+	yield(get_tree(), "fixed_frame")
+	yield(get_tree(), "fixed_frame")
+	var battle = BATTLE.instance()
+	battle.add_child(map)
+	yield(get_tree(), "fixed_frame")
+	yield(get_tree(), "fixed_frame")
+	queue_free()
+	get_parent().add_child(battle)
 
 func local_to_global(zone, tile):
 	return self.zones.get_tile_at(zone.get_pos() + Vector2(1,1), false) + tile
