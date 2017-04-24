@@ -241,6 +241,7 @@ func _ready():
 	
 	#Setup lifebar
 	var lifebar = player_info.get_node('lifebar')
+	lifebar.set_min(-1)
 	lifebar.set_max(max_life)
 	lifebar.set_value(max_life)
 	
@@ -265,10 +266,6 @@ func _fixed_process(delta):
 	player_node.get_node("CanvasLayer").set_offset(pos)
 	
 	#player_info.get_node("health_text").set_text(var2str(player_info.get_node("lifebar").get_value()))
-	
-	#Checks for player health every frame
-	if self.damage_taken >= self.max_life:
-		self.kill()
 
 #Creates a new range_area with radius 'r'. Removes previously range_area
 func create_new_range(r):
@@ -335,7 +332,8 @@ func take_damage(attacker, d):
 	
 	#Update lifebar with tween
 	var tween = player_info.get_node('lifebar/change_life_tween')
-	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", self.max_life - old_damage_taken, (max(0,max_life - damage_taken)), .1, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", self.max_life - old_damage_taken, \
+										(max(0, self.max_life - self.damage_taken)), .1, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 	
 	if self.damage_taken >= self.max_life:
@@ -392,6 +390,6 @@ func drop_consumable():
 
 #Handle player death
 func kill():
-	player_node.queue_free()
 	emit_signal("died", self)
 	audience_bar.death(self)
+	player_node.queue_free()
