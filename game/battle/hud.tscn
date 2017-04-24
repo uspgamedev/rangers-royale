@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://battle/hud/event_panel.gd" type="Script" id=1]
 [ext_resource path="res://battle/hud/audience_bar.gd" type="Script" id=2]
-[ext_resource path="res://battle/hud/vaias.ogg" type="AudioStream" id=3]
-[ext_resource path="res://battle/hud/cheering.ogg" type="AudioStream" id=4]
+[ext_resource path="res://battle/hud/thumb-up.tex" type="Texture" id=3]
+[ext_resource path="res://battle/hud/thumb-down.tex" type="Texture" id=4]
+[ext_resource path="res://battle/hud/vaias.ogg" type="AudioStream" id=5]
+[ext_resource path="res://battle/hud/cheering.ogg" type="AudioStream" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -96,9 +98,23 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
+[node name="ThumbsUp" type="Sprite" parent="AudienceBar"]
+
+transform/pos = Vector2( 185, 10 )
+transform/rot = 270.0
+transform/scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 3 )
+
+[node name="ThumbsDown" type="Sprite" parent="AudienceBar"]
+
+transform/pos = Vector2( -25, 10 )
+transform/rot = 270.0
+transform/scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 4 )
+
 [node name="Hoes" type="StreamPlayer" parent="AudienceBar"]
 
-stream/stream = ExtResource( 3 )
+stream/stream = ExtResource( 5 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 0.0
@@ -109,7 +125,7 @@ stream/buffering_ms = 500
 
 [node name="Cheering" type="StreamPlayer" parent="AudienceBar"]
 
-stream/stream = ExtResource( 4 )
+stream/stream = ExtResource( 6 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 0.0
