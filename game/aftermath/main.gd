@@ -1,5 +1,7 @@
 extends Panel
 
+const EDITOR = preload("res://battle/editor/main.tscn")
+
 export(int) var total_time = 100.2
 export(int) var num_survivors = 2
 export(int) var audience_score = 75.4
@@ -10,7 +12,6 @@ onready var time_display = get_node("Frame/TotalTime/Value")
 onready var survivors_display = get_node("Frame/NumSurvivors/Value")
 onready var audience_display = get_node("Frame/AudienceScore/Value")
 onready var reputation_display = get_node("Frame/Reputation")
-onready var transition = get_node("Transition")
 
 func _ready():
 	var cases = [
@@ -27,7 +28,8 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
-		transition.go()
+		queue_free()
+		get_parent().add_child(EDITOR.instance())
 
 func set_time(mins):
 	var hours = int(mins/60.0)
