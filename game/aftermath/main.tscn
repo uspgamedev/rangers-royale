@@ -1,30 +1,31 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://gui/theme.tres" type="Theme" id=1]
 [ext_resource path="res://aftermath/main.gd" type="Script" id=2]
-[ext_resource path="res://gui/Exo2-Light.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://menu/logo-simple-alternate.tex" type="Texture" id=4]
+[ext_resource path="res://menu/main_screen.ogg" type="AudioStream" id=3]
+[ext_resource path="res://gui/Exo2-Light.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://menu/logo-simple-alternate.tex" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 
 font/size = 24
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 3 )
+font/font = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
 
 font/size = 18
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 3 )
+font/font = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=3]
 
 font/size = 32
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 3 )
+font/font = ExtResource( 4 )
 
 [node name="MatchResults" type="Panel"]
 
@@ -43,6 +44,17 @@ script/script = ExtResource( 2 )
 total_time = 100.2
 num_survivors = 2
 audience_score = 75.4
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 3 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = true
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
 
 [node name="Frame" type="Control" parent="."]
 
@@ -293,7 +305,7 @@ margin/left = 64.0
 margin/top = 128.0
 margin/right = -64.0
 margin/bottom = 0.0
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 stretch_mode = 0
 
 

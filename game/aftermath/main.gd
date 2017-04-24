@@ -16,7 +16,7 @@ func _ready():
 		[survivors_display, num_survivors, "set_survivors", 1.5],
 		[time_display, total_time, "set_time", 2],
 		[audience_display, audience_score, "set_audience", 2.5],
-		[reputation_display, calculate_reputation(), "set_reputation", 5]
+		[reputation_display, calculate_reputation(), "set_reputation", 4]
 	]
 	for entry in cases:
 		var tween = entry[0].get_node("Tween")
@@ -45,6 +45,6 @@ func calculate_reputation():
 		survival_coef = -1000
 	else:
 		survival_coef = 2000 - (num_survivors - 1)*500
-	var audience_coef = (audience_score - 50) * 10
-	global_state.reputation += time_coef + survival_coef + audience_coef
+	var audience_coef = (audience_score - 50) * 100
+	global_state.reputation += (time_coef + survival_coef + audience_coef)*global_state.BLING_LEVEL
 	return global_state.reputation
