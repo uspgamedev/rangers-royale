@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://battle/editor/main.gd" type="Script" id=1]
 [ext_resource path="res://battle/editor/construction.ogg" type="AudioStream" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://battle/zones/field_central.tscn" type="PackedScene" id=4]
 [ext_resource path="res://gui/theme.tres" type="Theme" id=5]
 [ext_resource path="res://gui/Exo2-Light.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://effects/alpha_fader.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -75,6 +76,8 @@ enabled_focus_mode = 2
 shortcut = null
 text = "Confirm Arena"
 flat = false
+
+[node name="Fader" parent="." instance=ExtResource( 7 )]
 
 [connection signal="exit_tree" from="StreamPlayer" to="StreamPlayer" method="stop"]
 

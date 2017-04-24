@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://menu/logo-positivev3.tex" type="Texture" id=1]
 [ext_resource path="res://menu/title.gd" type="Script" id=2]
 [ext_resource path="res://effects/fader.tscn" type="PackedScene" id=3]
+[ext_resource path="res://effects/alpha_fader.tscn" type="PackedScene" id=4]
 
 [node name="Title" type="TextureFrame"]
 
@@ -27,5 +28,7 @@ playback/process_mode = 1
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
+
+[node name="AlphaFader" parent="." instance=ExtResource( 4 )]
 
 

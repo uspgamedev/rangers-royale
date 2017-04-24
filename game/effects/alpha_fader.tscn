@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://effects/alpha_fader.gd" type="Script" id=1]
+
+[node name="Fader" type="CanvasLayer"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+script/script = ExtResource( 1 )
+fade_in_time = 1.0
+fade_out_time = 1.0
+
+[node name="Tween" type="Tween" parent="."]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+

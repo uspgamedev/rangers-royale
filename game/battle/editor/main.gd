@@ -12,6 +12,7 @@ const ZONES = [
 ]
 
 onready var zones = get_node("Map/Zones")
+onready var fader = get_node("Fader")
 
 var placements
 var current_zone
@@ -19,6 +20,7 @@ var at_valid_tile
 
 func _ready():
 	randomize()
+	fader.fade_in()
 	set_process_input(true)
 	grab_zone()
 
@@ -82,8 +84,8 @@ func _finish():
 	self.current_zone.queue_free()
 	self.current_zone = null
 	set_process_input(false)
-	yield(get_tree(), "fixed_frame")
-	yield(get_tree(), "fixed_frame")
+	fader.fade_out()
+	yield(fader, "done_fade_out")
 	var map = get_node("Map")
 	remove_child(map)
 	yield(get_tree(), "fixed_frame")

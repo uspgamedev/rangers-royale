@@ -1,31 +1,32 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://gui/theme.tres" type="Theme" id=1]
 [ext_resource path="res://aftermath/main.gd" type="Script" id=2]
-[ext_resource path="res://menu/main_screen.ogg" type="AudioStream" id=3]
-[ext_resource path="res://gui/Exo2-Light.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://menu/logo-simple-alternate.tex" type="Texture" id=5]
+[ext_resource path="res://effects/alpha_fader.tscn" type="PackedScene" id=3]
+[ext_resource path="res://menu/main_screen.ogg" type="AudioStream" id=4]
+[ext_resource path="res://gui/Exo2-Light.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://menu/logo-simple-alternate.tex" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 
 font/size = 24
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 4 )
+font/font = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=2]
 
 font/size = 18
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 4 )
+font/font = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=3]
 
 font/size = 32
 font/use_mipmaps = false
 font/use_filter = false
-font/font = ExtResource( 4 )
+font/font = ExtResource( 5 )
 
 [node name="MatchResults" type="Panel"]
 
@@ -45,9 +46,11 @@ total_time = 100.2
 num_survivors = 2
 audience_score = 75.4
 
+[node name="Fader" parent="." instance=ExtResource( 3 )]
+
 [node name="StreamPlayer" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 3 )
+stream/stream = ExtResource( 4 )
 stream/play = false
 stream/loop = false
 stream/volume_db = 0.0
@@ -305,7 +308,7 @@ margin/left = 64.0
 margin/top = 128.0
 margin/right = -64.0
 margin/bottom = 0.0
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 stretch_mode = 0
 
 

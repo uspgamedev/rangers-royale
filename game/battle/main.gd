@@ -17,10 +17,12 @@ onready var time = 0
 onready var normal_bgm = get_node("NormalBGM")
 onready var intense_bgm = get_node("IntenseBGM")
 onready var jingle = get_node("Jingle")
+onready var fader = get_node("Fader")
 
 var intense = false
 
 func _ready():
+	fader.fade_in()
 	zones.generate_border()
 	for zone in zones.get_children():
 		zone.connect("exit_tree", self, "_zone_closed")
@@ -56,6 +58,8 @@ func _start_countdown():
 	set_fixed_process(false)
 
 func _endgame():
+	fader.fade_out()
+	yield(fader, "done_fade_out")
 	var result = RESULT.instance()
 	result.total_time = time
 	result.num_survivors = players.get_child_count()

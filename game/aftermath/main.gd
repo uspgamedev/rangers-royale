@@ -8,12 +8,15 @@ export(int) var audience_score = 75.4
 
 onready var global_state = get_tree().get_root().get_node("GlobalState")
 
+onready var fader = get_node("Fader")
+
 onready var time_display = get_node("Frame/TotalTime/Value")
 onready var survivors_display = get_node("Frame/NumSurvivors/Value")
 onready var audience_display = get_node("Frame/AudienceScore/Value")
 onready var reputation_display = get_node("Frame/Reputation")
 
 func _ready():
+	fader.fade_in()
 	var cases = [
 		[survivors_display, num_survivors, "set_survivors", 1.5],
 		[time_display, total_time, "set_time", 2],
@@ -28,6 +31,8 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_click"):
+		fader.fade_out()
+		yield(fader, "done_fade_out")
 		queue_free()
 		get_parent().add_child(EDITOR.instance())
 

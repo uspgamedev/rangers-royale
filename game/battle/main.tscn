@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://battle/main.gd" type="Script" id=1]
 [ext_resource path="res://battle/mya.ogg" type="AudioStream" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://battle/jingle.ogg" type="AudioStream" id=4]
 [ext_resource path="res://battle/hud.tscn" type="PackedScene" id=5]
 [ext_resource path="res://battle/zone_picker.tscn" type="PackedScene" id=6]
+[ext_resource path="res://effects/alpha_fader.tscn" type="PackedScene" id=7]
 
 [node name="Royale" type="Control"]
 
@@ -87,6 +88,8 @@ autostart = false
 [node name="ZonePicker" parent="." instance=ExtResource( 6 )]
 
 zones_path = NodePath("../Map/Zones")
+
+[node name="Fader" parent="." instance=ExtResource( 7 )]
 
 [connection signal="timeout" from="Jingle/Timer" to="IntenseBGM" method="play"]
 
