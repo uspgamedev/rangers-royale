@@ -59,6 +59,6 @@ func _endgame():
 	var result = RESULT.instance()
 	result.total_time = time
 	result.num_survivors = players.get_child_count()
-	result.autience_score = audience_bar.enjoyment
+	result.audience_score = audience_bar.enjoyment
 	queue_free()
 	get_parent().add_child(result)

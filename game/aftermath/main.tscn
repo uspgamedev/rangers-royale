@@ -40,9 +40,9 @@ margin/top = 100.0
 margin/right = 200.0
 margin/bottom = 100.0
 script/script = ExtResource( 2 )
-total_time = 100
-num_survivors = null
-audience_score = null
+total_time = 100.2
+num_survivors = 2
+audience_score = 75.4
 
 [node name="Frame" type="Control" parent="."]
 
@@ -74,7 +74,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="TotalTime" type="Control" parent="Frame"]
+[node name="NumSurvivors" type="Control" parent="Frame"]
 
 anchor/right = 1
 focus/ignore_mouse = false
@@ -85,60 +85,6 @@ margin/left = 0.0
 margin/top = 40.0
 margin/right = 0.0
 margin/bottom = 80.0
-
-[node name="Header" type="Label" parent="Frame/TotalTime"]
-
-anchor/right = 1
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 180.0
-margin/bottom = 22.0
-custom_fonts/font = SubResource( 2 )
-text = "Total time"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Value" type="Label" parent="Frame/TotalTime"]
-
-anchor/right = 1
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 180.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 39.0
-custom_fonts/font = SubResource( 3 )
-text = "1337"
-align = 2
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Tween" type="Tween" parent="Frame/TotalTime/Value"]
-
-playback/process_mode = 1
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
-
-[node name="NumSurvivors" type="Control" parent="Frame"]
-
-anchor/right = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 80.0
-margin/right = 0.0
-margin/bottom = 120.0
 
 [node name="Header" type="Label" parent="Frame/NumSurvivors"]
 
@@ -176,6 +122,60 @@ lines_skipped = 0
 max_lines_visible = -1
 
 [node name="Tween" type="Tween" parent="Frame/NumSurvivors/Value"]
+
+playback/process_mode = 1
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="TotalTime" type="Control" parent="Frame"]
+
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 80.0
+margin/right = 0.0
+margin/bottom = 120.0
+
+[node name="Header" type="Label" parent="Frame/TotalTime"]
+
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 180.0
+margin/bottom = 22.0
+custom_fonts/font = SubResource( 2 )
+text = "Total time"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Value" type="Label" parent="Frame/TotalTime"]
+
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 180.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 39.0
+custom_fonts/font = SubResource( 3 )
+text = "1337"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Tween" type="Tween" parent="Frame/TotalTime/Value"]
 
 playback/process_mode = 1
 playback/active = false
