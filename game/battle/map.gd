@@ -4,6 +4,7 @@ const PLAYER = preload("res://objects/player.tscn")
 const DROP = preload("res://battle/map/drop.tscn")
 const BLOOD = preload("res://objects/player/death.tscn")
 
+onready var global_state = get_node("/root/GlobalState")
 onready var zones = get_node("Zones")
 onready var items = get_node("Items")
 onready var players = get_node("Players")
@@ -11,11 +12,12 @@ onready var camera = get_node("Camera")
 
 onready var drop_sfx = get_node("DropSFX")
 onready var close_sfx = get_node("CloseSFX")
-
+onready var dead_players = 0;
 var spawn_points = {}
 
 func _ready():
 	randomize()
+	
 
 func drop_item(item, pos):
 	var drop = DROP.instance()
@@ -45,6 +47,7 @@ func _player_died(player):
 	var blood = BLOOD.instance()
 	blood.set_pos(player.get_parent().get_pos())
 	add_child(blood)
+	dead_players += 1
 	print("hue")
 
 func play_close_zone_sfx():

@@ -1,6 +1,6 @@
 extends Label
 
-const DURATION = 5
+const DURATION = 2.5
 
 onready var tween = get_node("Tween")
 

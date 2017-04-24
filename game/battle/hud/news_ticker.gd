@@ -4,13 +4,17 @@ const MSG = preload("res://battle/hud/flowing_text.tscn")
 
 var queue = []
 var idle = true
+var msgs = [
+	"Let's have a good show tonight!",
+	"Rangers, it's go time!",
+]
 
 onready var global_state = get_node("/root/GlobalState")
 onready var logo = get_node("Logo")
 
 func _ready():
 	global_state.shortcuts["newsticker"] = self
-	queue_msg("Let's have a good show tonight!")
+	queue_msg(msgs[randi()%msgs.size()])
 
 func _exit_tree():
 	global_state.shortcuts.erase("newsticker")

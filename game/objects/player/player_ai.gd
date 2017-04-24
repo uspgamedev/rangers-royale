@@ -11,11 +11,14 @@ var player_node #Reference to the player
 var player_info #Reference to player info panel
 var map_node #Reference to the game map (map sets when creating the player)
 onready var audience_bar = get_node('../../../../HUD/AudienceBar')
+onready var global_state = get_node("/root/GlobalState")
+
 
 var default_unarmed_range = 10 + 5*randf() #Ranged of "unarmed weapon"
 var default_unarmed_power = 5 + randf()*3   #Power of "unarmed weapon"
 var default_unarmed_defense = randf()*3   #Defense of "unarmed weapon"
 
+var is_dead = false
 var max_life = 30 #Player maxlife
 var damage_taken = 0 #Damage taken by player
 onready var name = NAMES.NAMES[randi()%NAMES.NAMES.size()] #Name of player
@@ -340,7 +343,7 @@ func take_damage(attacker, d):
 	if self.damage_taken >= self.max_life:
 		attacker.fans += self.haters/30
 		attacker.haters += self.fans/20
-		self.kill()
+		self.kill(attacker)
 
 #Heal player
 func heal(h):
@@ -390,7 +393,23 @@ func drop_consumable():
 	self.player_info.get_node("consumable").set_texture(PATCH)
 
 #Handle player death
-func kill():
+func kill(attacker):
 	emit_signal("died", self)
+	self.is_dead = true
 	audience_bar.death(self)
 	player_node.queue_free()
+	global_state.shortcuts["newsticker"].queue_msg(self.killed_msgs(player_node, attacker))
+
+#Returns a random msg when player is dead
+func killed_msgs(player, attacker):
+	var msgs = []
+	var player_name = player.get_node("AI").name
+	msgs.append("Ranger " + player_name + " was killed!")
+	if attacker:
+		var attacker_name = attacker.name
+		var attacker_weapon = attacker.weapon_equipped
+		if attacker_weapon: 
+			var attacker_weapon_name = attacker_weapon.get_node("Info").name
+		msgs.append(player_name + " got brutally murdered by " + attacker_name)
+	var msg = msgs[randi()%(msgs.size())]
+	return msg
