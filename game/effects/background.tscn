@@ -28,7 +28,7 @@ Panel/styles/panelnc = null
 offsets = FloatArray( 0, 0.48538, 1 )
 colors = ColorArray( 0.513726, 0.627451, 0.627451, 0, 0.843137, 0.992157, 0.92549, 0.157451, 0.843137, 0.992157, 0.92549, 0 )
 
-[node name="Main" type="Control"]
+[node name="Base" type="Control"]
 
 material/material = ExtResource( 1 )
 anchor/right = 1
