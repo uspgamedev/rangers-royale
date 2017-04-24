@@ -30,13 +30,13 @@ stream/buffering_ms = 500
 
 [node name="Map" parent="." instance=ExtResource( 3 )]
 
+editor/display_folded = true
+
 [node name="Camera" parent="Map"]
 
 transform/pos = Vector2( 0, 0 )
 
 [node name="Zone" parent="Map/Zones" instance=ExtResource( 4 )]
-
-danger = 0
 
 [connection signal="exit_tree" from="StreamPlayer" to="StreamPlayer" method="stop"]
 

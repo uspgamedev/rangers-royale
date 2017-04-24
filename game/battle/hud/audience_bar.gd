@@ -35,12 +35,12 @@ func check_status(delta):
 	change_enjoyment(-delta)
 
 func attack(attacker):
-	amount = float(attacker.fans)/400
+	amount = float(attacker.fans)/(400 * players.get_child_count() / 5)
 	#print("attack ", amount)
 	change_enjoyment(amount)
 
 func death(player):
-	amount = float(player.haters - player.fans)/5
+	amount = float(player.haters - player.fans)/players.get_child_count()
 	#print("death ", amount)
 	change_enjoyment(amount)
 
@@ -50,12 +50,12 @@ func player_win(winner):
 	change_enjoyment(amount)
 
 func item_pickup(player):
-	amount = float(player.fans)/600
+	amount = float(player.fans)/(600 * players.get_child_count() / 5)
 	#print("pickup ", amount)
 	change_enjoyment(amount)
 
 func use_item(player):
-	amount = float(player.fans*2 - player.haters)/800
+	amount = float(player.fans*2 - player.haters)/(800 * players.get_child_count() / 5)
 	#print("use item ", amount)
 	change_enjoyment(amount)
 

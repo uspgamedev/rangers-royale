@@ -10,6 +10,7 @@ onready var time_display = get_node("Frame/TotalTime/Value")
 onready var survivors_display = get_node("Frame/NumSurvivors/Value")
 onready var audience_display = get_node("Frame/AudienceScore/Value")
 onready var reputation_display = get_node("Frame/Reputation")
+onready var transition = get_node("Transition")
 
 func _ready():
 	var cases = [
@@ -22,6 +23,11 @@ func _ready():
 		var tween = entry[0].get_node("Tween")
 		tween.interpolate_method(self, entry[2], 0, entry[1], entry[3], Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
+	set_process_input(true)
+
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		transition.go()
 
 func set_time(mins):
 	var hours = int(mins/60.0)
