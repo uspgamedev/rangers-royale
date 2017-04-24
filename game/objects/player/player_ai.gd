@@ -74,8 +74,8 @@ class Attack:
 	func _init(_attacker, _target).(3):
 		target = _target
 		attacker = _attacker
-		attacker.fans = max(0, attacker.fans + target.get_node('AI').haters/50)
-		attacker.haters = max(0, attacker.haters + target.get_node('AI').fans/50)
+		attacker.fans += target.get_node('AI').haters/50
+		attacker.haters += target.get_node('AI').fans/50
 	func act(player, ai):
 		target.get_node('AI').take_damage(attacker, ai.power)
 
@@ -339,8 +339,8 @@ func take_damage(attacker, d):
 	tween.start()
 	
 	if self.damage_taken >= self.max_life:
-		attacker.fans = max(0, attacker.fans + self.haters/30)
-		attacker.haters = max(0, attacker.fans + self.fans/20)
+		attacker.fans += self.haters/30
+		attacker.haters += self.fans/20
 		self.kill()
 
 #Heal player
