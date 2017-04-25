@@ -146,6 +146,7 @@ func tries_to_pickup_nearby_items(ai):
 		
 #Attack a random nearby body if possible
 func tries_to_attack_nearby_bodies(ai):
+	#print(self.name, " ", ai.nearby_bodies.size(), " ", ai.on_cooldown)
 	if ai.nearby_bodies.size() > 0 and ai.on_cooldown <= 0:
 		var random_body = ai.nearby_bodies[randi()%ai.nearby_bodies.size()]
 		audience_bar.attack(self)
@@ -255,11 +256,10 @@ func _ready():
 	#Setup Player Info
 	player_info.get_node("name").set_text(self.name)
 	
-func _fixed_process(delta):
-	#If player doesn't have a range_area, create an unarmed range area
-	if not player_node.get_node('range_area'):
-		create_new_range(default_unarmed_range)
+	yield(get_tree(), 'fixed_frame')
+	create_new_range(default_unarmed_range)
 	
+func _fixed_process(delta):
 	#Update cooldown
 	self.on_cooldown = max(self.on_cooldown-delta, 0)
 	
@@ -276,12 +276,11 @@ func _fixed_process(delta):
 
 #Creates a new range_area with radius 'r'. Removes previously range_area
 func create_new_range(r):
-
 	#Remove previously range_area
 	var old_range_area = player_node.get_node('range_area')
-	if old_range_area:
+	if old_range_area != null:
 		player_node.remove_child(old_range_area)
-		yield(old_range_area, 'removed_from_tree')
+		#yield(old_range_area, 'exit_tree')
 	
 	self.nearby_bodies.clear() #Clear nearby players
 	
