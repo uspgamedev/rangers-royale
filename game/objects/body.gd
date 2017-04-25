@@ -12,7 +12,6 @@ signal speed_changed(speed)
 
 var speed = Vector2()
 
-onready var animation = get_node("Sprite/Animation")
 onready var sprite = get_node('Sprite')
 
 func _ready():
