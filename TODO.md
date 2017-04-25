@@ -39,7 +39,7 @@
 #### UI
 
 + [X] List of available events
-+ [ ] News flash banner
++ [X] News flash banner
 + [X] Audience meter
 
 ### Items
@@ -56,7 +56,7 @@
 ## Juiciness
 
 + [X] Burn white hexagons
-+ [ ] Transition from title to editor
-+ [ ] Transition from editor to battle
++ [X] Transition from title to editor
++ [X] Transition from editor to battle
 + [ ] Players dropping in battle field
 
