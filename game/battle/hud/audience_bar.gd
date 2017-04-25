@@ -30,8 +30,6 @@ func _fixed_process(delta):
 			global.winner = players.get_child(0)
 			player_win(players.get_child(0).get_node('AI'))
 		end = true
-	if (global.winner != null):
-		print("WINNER: ", global.winner.get_node('AI').name)
 
 func catastrophe():
 	#print("CATASTROPHE")
