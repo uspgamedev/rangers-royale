@@ -1,6 +1,7 @@
 extends Panel
 
 const EDITOR = preload("res://battle/editor/main.tscn")
+const Protip = preload("res://gui/protip.gd")
 
 export(int) var total_time = 100.2
 export(int) var num_survivors = 2
@@ -16,6 +17,7 @@ onready var audience_display = get_node("Frame/AudienceScore/Value")
 onready var reputation_display = get_node("Frame/Reputation")
 
 func _ready():
+	var global = global_state.reputation
 	fader.fade_in()
 	var cases = [
 		[survivors_display, num_survivors, "set_survivors", 1.5],
@@ -28,6 +30,14 @@ func _ready():
 		tween.interpolate_method(self, entry[2], 0, entry[1], entry[3], Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
 	set_process_input(true)
+	if (audience_score <= 0):
+		get_node('/root/Base/BG').add_child(Protip.show_protip("That show was lame!\nWe can't bear to \nwatch anymore!!!"))
+	elif (num_survivors == 0):
+		get_node('/root/Base/BG').add_child(Protip.show_protip("There must be a\nchampion ranger! Keep at\nleast one last survivor\nnext time"))
+	elif (global < cases[3][1]):
+		get_node('/root/Base/BG').add_child(Protip.show_protip("It was a good show!\nKeep up the good work"))
+	else:
+	get_node('/root/Base/BG').add_child(Protip.show_protip("Tonight's show was\nnot so good..."))
 
 func _input(event):
 	if event.is_action_pressed("ui_click"):
