@@ -10,10 +10,13 @@ script/source = "extends TextureFrame
 export(String) var name1 = \"Bob\"
 export(String) var name2 = \"Dude\"
 
+var icon
+
 onready var text = get_node(\"Text\")
 
 func _ready():
 	text.set_text(name1 + \" killed \" + name2)
+	set_texture(icon)
 "
 
 [sub_resource type="DynamicFont" id=2]

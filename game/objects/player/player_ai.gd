@@ -1,5 +1,8 @@
 extends Node
 
+const EXPLO = preload("res://objects/item/explosion.tex")
+const FIST = preload("res://objects/item/soco.tex")
+
 const DIRS = preload("res://definitions/directions.gd")
 const ITEM_TYPE = preload("res://definitions/item_enums.gd")
 const SCORE = preload("res://definitions/score.gd")
@@ -399,7 +402,15 @@ func kill(attacker):
 	self.is_dead = true
 	audience_bar.death(self)
 	player_node.queue_free()
-	global_state.shortcuts["fraglist"]._add_frag(attacker.name, name)
+	print(attacker,"/",str(attacker))
+	if str(attacker) == "map":
+		global_state.shortcuts["fraglist"]._add_frag("The Arena", name, EXPLO)
+	else:
+		var asd = attacker.weapon_equipped
+		if asd != null:
+			global_state.shortcuts["fraglist"]._add_frag(attacker.name, name, asd.get_node("Sprite").get_texture())
+		else:
+			global_state.shortcuts["fraglist"]._add_frag(attacker.name, name, FIST)
 	global_state.shortcuts["newsticker"].queue_msg(self.killed_msgs(player_node, attacker))
 
 #Returns a random msg when player is dead
@@ -431,7 +442,7 @@ func killed_msgs(player, attacker):
 	var player_fans = player.get_node("AI").fans
 	var player_haters = player.get_node("AI").haters
 	msgs.append("Ranger " + player_name + " was killed! ")
-	if (var2str(attacker) != "map"):
+	if (str(attacker) != "map"):
 		var attacker_name = attacker.name
 		msgs.append(player_name + " got brutally murdered by " + attacker_name + "! ")
 		var attacker_weapon = attacker.weapon_equipped

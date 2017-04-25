@@ -31,6 +31,7 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("ui_click"):
+		set_process_input(false)
 		fader.fade_out()
 		yield(fader, "done_fade_out")
 		queue_free()
