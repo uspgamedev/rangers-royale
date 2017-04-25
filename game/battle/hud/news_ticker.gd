@@ -7,6 +7,7 @@ var idle = true
 var msgs = [
 	"Let's have a good show tonight!",
 	"Rangers, it's go time!",
+	"The stage of battle is set. It's showtime!",
 ]
 
 onready var global_state = get_node("/root/GlobalState")

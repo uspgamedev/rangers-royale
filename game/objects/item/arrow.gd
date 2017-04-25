@@ -9,4 +9,4 @@ var range_radius = 40 #Radius of weapon range
 
 func _ready():
 	type = TYPE.WEAPON
-	name = "arrow"
+	name = "bow"

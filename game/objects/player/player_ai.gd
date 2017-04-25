@@ -433,9 +433,11 @@ func killed_msgs(player, attacker):
 		"",
 		"",
 		"",
+		"",
 		"What a bloodbath!",
 		"That was exciting!",
 		"What a rush!",
+		"I can't believe it!",
 	]
 	var player_name = player.get_node("AI").name
 	var player_fans = player.get_node("AI").fans
@@ -444,13 +446,15 @@ func killed_msgs(player, attacker):
 	if (str(attacker) != "map"):
 		var attacker_name = attacker.name
 		msgs.append(player_name + " got brutally murdered by " + attacker_name + "! ")
+		if attacker.is_dead:
+			return "In his last breath, " + attacker_name + " killed " + attacker_name + "! "
 		var attacker_weapon = attacker.weapon_equipped
 		if attacker_weapon:
 			var attacker_weapon_name = attacker_weapon.get_node("Info").name
 			if attacker_weapon_name == "long_sword":
 				msgs.append(player_name + " was slashed to death by " + attacker_name + "! ")
 				msgs.append(attacker_name + "cut" + player_name + "to pieces with a sword! ")
-			elif attacker_weapon_name == "arrow":
+			elif attacker_weapon_name == "bow":
 				msgs.append(player_name + " got an arrow to the knee! ")
 			elif attacker_weapon_name == "axe":
 				msgs.append(attacker_name + " chopped " + player_name + " like a tree! ")
@@ -460,6 +464,7 @@ func killed_msgs(player, attacker):
 		#Unarmed
 		else:
 			msgs.append(attacker_name + " killed " + player_name + " with his bare hands!! ")
+			msgs.append("Who said that " + attacker_name + " needed a weapon to kill " + player_name + "? ")
 	#Map killed him
 	else:
 		msgs.append(player_name + " didn't run to safety in time... that's an unlucky Ranger! ")
