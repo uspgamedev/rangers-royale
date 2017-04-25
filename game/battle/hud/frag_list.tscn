@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=1]
-
-[ext_resource path="res://battle/hud/frag.tscn" type="PackedScene" id=1]
+[gd_scene load_steps=2 format=1]
 
 [sub_resource type="GDScript" id=1]
 
@@ -35,12 +33,5 @@ margin/right = 210.0
 margin/bottom = 300.0
 alignment = 0
 script/script = SubResource( 1 )
-
-[node name="Frag" parent="." instance=ExtResource( 1 )]
-
-anchor/bottom = 0
-margin/top = 0.0
-margin/right = 200.0
-margin/bottom = 16.0
 
 
