@@ -14,10 +14,11 @@ func _ready():
 func _exit_tree():
 	global_state.shortcuts.erase(\"fraglist\")
 
-func _add_frag(name1, name2):
+func _add_frag(name1, name2, texture):
 	var frag = FRAG.instance()
 	frag.name1 = name1
 	frag.name2 = name2
+	frag.icon = texture
 	add_child(frag)
 "
 
