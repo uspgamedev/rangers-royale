@@ -72,7 +72,7 @@ playback/speed = 1.0
 [node name="EventDrawTimer" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 0.5
+wait_time = 2.0
 one_shot = false
 autostart = true
 
