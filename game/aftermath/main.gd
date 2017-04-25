@@ -37,7 +37,7 @@ func _ready():
 	elif (global < cases[3][1]):
 		get_node('/root/Base/BG').add_child(Protip.show_protip("It was a good show!\nKeep up the good work"))
 	else:
-	get_node('/root/Base/BG').add_child(Protip.show_protip("Tonight's show was\nnot so good..."))
+		get_node('/root/Base/BG').add_child(Protip.show_protip("Tonight's show was\nnot so good..."))
 
 func _input(event):
 	if event.is_action_pressed("ui_click"):
