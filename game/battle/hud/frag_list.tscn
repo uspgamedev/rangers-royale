@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://battle/hud/frag.tscn" type="PackedScene" id=1]
 
 [sub_resource type="GDScript" id=1]
 
@@ -6,10 +8,18 @@ script/source = "extends VBoxContainer
 
 const FRAG = preload(\"res://battle/hud/frag.tscn\")
 
+onready var global_state = get_node(\"/root/GlobalState\")
+
+func _ready():
+	global_state.shortcuts[\"fraglist\"] = self
+
+func _exit_tree():
+	global_state.shortcuts.erase(\"fraglist\")
+
 func _add_frag(name1, name2):
 	var frag = FRAG.instance()
-	frag.get_node(\"Player1\").set_text(name1)
-	frag.get_node(\"Player2\").set_text(name2)
+	frag.name1 = name1
+	frag.name2 = name2
 	add_child(frag)
 "
 
@@ -21,9 +31,16 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 10.0
 margin/top = 100.0
-margin/right = 200.0
+margin/right = 210.0
 margin/bottom = 300.0
 alignment = 0
 script/script = SubResource( 1 )
+
+[node name="Frag" parent="." instance=ExtResource( 1 )]
+
+anchor/bottom = 0
+margin/top = 0.0
+margin/right = 200.0
+margin/bottom = 16.0
 
 

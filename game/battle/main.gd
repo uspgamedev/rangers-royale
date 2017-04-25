@@ -28,7 +28,6 @@ func _ready():
 	for zone in zones.get_children():
 		zone.connect("exit_tree", self, "_zone_closed")
 	yield(get_tree(), "fixed_frame")
-	fraglist._add_frag("Bob", "Dude")
 	for i in range(2*zones.get_child_count()):
 		map.drop_player()
 	set_fixed_process(true)
