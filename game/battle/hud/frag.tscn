@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://objects/item/patch.tex" type="Texture" id=1]
+[ext_resource path="res://gui/Exo2-Black.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends TextureFrame
+
+export(String) var name1 = \"Bob\"
+export(String) var name2 = \"Dude\"
+
+onready var text = get_node(\"Text\")
+
+func _ready():
+	text.set_text(name1 + \" killed \" + name2)
+"
+
+[sub_resource type="DynamicFont" id=2]
+
+font/size = 16
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 2 )
+
+[node name="Frag" type="TextureFrame"]
+
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 2.0
+margin/right = 16.0
+margin/bottom = 2.0
+texture = ExtResource( 1 )
+stretch_mode = 0
+script/script = SubResource( 1 )
+name1 = "Bob"
+name2 = "Dude"
+
+[node name="Text" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 20.0
+margin/top = -4.0
+margin/right = 40.0
+margin/bottom = 14.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.94902, 0.584314, 0.34902, 1 )
+custom_colors/font_color_shadow = Color( 0.168627, 0.239216, 0.254902, 1 )
+custom_constants/shadow_offset_x = 3
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]
+
+

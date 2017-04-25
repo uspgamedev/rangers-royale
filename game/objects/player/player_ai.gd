@@ -399,6 +399,7 @@ func kill(attacker):
 	self.is_dead = true
 	audience_bar.death(self)
 	player_node.queue_free()
+	global_state.shortcuts["fraglist"]._add_frag(attacker.name, name)
 	global_state.shortcuts["newsticker"].queue_msg(self.killed_msgs(player_node, attacker))
 
 #Returns a random msg when player is dead

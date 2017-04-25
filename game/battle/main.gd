@@ -18,6 +18,7 @@ onready var normal_bgm = get_node("NormalBGM")
 onready var intense_bgm = get_node("IntenseBGM")
 onready var jingle = get_node("Jingle")
 onready var fader = get_node("Fader")
+onready var fraglist = get_node("HUD/FragList")
 
 var intense = false
 
