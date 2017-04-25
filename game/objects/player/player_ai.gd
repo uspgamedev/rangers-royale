@@ -430,7 +430,7 @@ func killed_msgs(player, attacker):
 	var player_name = player.get_node("AI").name
 	var player_fans = player.get_node("AI").fans
 	var player_haters = player.get_node("AI").haters
-	msgs.append("Ranger " + player_name + " was killed!")
+	msgs.append("Ranger " + player_name + " was killed! ")
 	if (var2str(attacker) != "map"):
 		var attacker_name = attacker.name
 		msgs.append(player_name + " got brutally murdered by " + attacker_name + "! ")
@@ -452,16 +452,16 @@ func killed_msgs(player, attacker):
 			msgs.append(attacker_name + " killed " + player_name + " with his bare hands!! ")
 	#Map killed him
 	else:
-		msgs.append(player_name + " didn't run to safety in time... that's an unlucky Ranger! Haha ")
+		msgs.append(player_name + " didn't run to safety in time... that's an unlucky Ranger! ")
 	var msg = msgs[randi()%(msgs.size())]
 	#Add first kill intro
 	if player.get_node("AI").map_node.dead_players == 1:
 		var first_kill_intro = first_kill_msgs[randi()%first_kill_msgs.size()]
 		msg = first_kill_intro + msg
 	#Outro
-	if player_fans >= 80 and player_fans > 2*player_haters:
+	if player_fans >= 100 and player_fans > 3*player_haters:
 		msg = msg + lots_of_fans_msgs[randi()%lots_of_fans_msgs.size()]
-	elif player_haters >= 80 and player_haters > 2*player_fans:
+	elif player_haters >= 60 and player_haters > 1.5*player_fans:
 		msg = msg + lots_of_haters_msgs[randi()%lots_of_haters_msgs.size()]
 	else:
 		msg = msg + outro_msgs[randi()%outro_msgs.size()]
