@@ -1,6 +1,7 @@
 extends Control
 
 const BATTLE = preload("res://battle/main.tscn")
+const Protip = preload("res://gui/protip.gd")
 
 const ZONES = [
 	preload("res://battle/zones/field_A.tscn"),
@@ -23,6 +24,7 @@ func _ready():
 	fader.fade_in()
 	set_process_input(true)
 	grab_zone()
+	get_node("/root/Base/BG").add_child(Protip.show_protip("Here you can create\nthe arena for tonight's\nRanger's Royale match!"))
 
 func grab_zone():
 	var i = randi() % ZONES.size()

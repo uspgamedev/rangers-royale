@@ -20,6 +20,9 @@ onready var jingle = get_node("Jingle")
 onready var fader = get_node("Fader")
 onready var fraglist = get_node("HUD/FragList")
 
+const Protip = preload("res://gui/protip.gd")
+
+
 var intense = false
 
 func _ready():
@@ -31,6 +34,8 @@ func _ready():
 	for i in range(2*zones.get_child_count()):
 		map.drop_player()
 	set_fixed_process(true)
+	get_node("HUD").add_child(Protip.show_protip("Keep an eye on the\nAudience Meter on\nthe right"))
+	
 
 func _zone_closed():
 	yield(get_tree(), "fixed_frame")
