@@ -11,7 +11,7 @@ func _activate():
 	var map = zone.get_parent().get_parent()
 	map.play_close_zone_sfx()
 	for player in map.players_in_zone(zone):
-		player.get_node("AI").kill()
+		player.get_node("AI").kill("map")
 	for item in map.items_in_zone(zone):
 		item.queue_free()
 	var zones = map.get_node("Zones")

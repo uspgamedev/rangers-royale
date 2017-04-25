@@ -337,7 +337,7 @@ func take_damage(attacker, d):
 	#Update lifebar with tween
 	var tween = player_info.get_node('lifebar/change_life_tween')
 	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", self.max_life - old_damage_taken, \
-										(max(0, self.max_life - self.damage_taken)), .1, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		(max(0, self.max_life - self.damage_taken)), .1, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 	
 	if self.damage_taken >= self.max_life:
@@ -354,7 +354,7 @@ func heal(h):
 	#Update lifebar with tween
 	var tween = player_info.get_node('lifebar/change_life_tween')
 	tween.interpolate_property(player_info.get_node('lifebar'), "range/value", (max_life-old_damage_taken), \
-								max_life - damage_taken, .1, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+		max_life - damage_taken, .1, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
 	tween.start()
 
 #Make player drop current weapon
@@ -395,6 +395,7 @@ func drop_consumable():
 #Handle player death
 func kill(attacker):
 	emit_signal("died", self)
+	self.map_node.dead_players += 1
 	self.is_dead = true
 	audience_bar.death(self)
 	player_node.queue_free()
@@ -403,13 +404,64 @@ func kill(attacker):
 #Returns a random msg when player is dead
 func killed_msgs(player, attacker):
 	var msgs = []
+	var first_kill_msgs = [
+		"The first casualty ladies and gentlemen! ",
+		"And there's the first hit! ",
+	]
+	var lots_of_fans_msgs = [
+		"He was loved by many...",
+		"He will be missed...",
+		"The fan favorite is no more!",
+		"His fans will be greatly upset!",
+	]
+	var lots_of_haters_msgs = [
+		"Good riddance!",
+		"His haters must be cheering right now.",
+	]
+	var outro_msgs = [
+		"",
+		"",
+		"",
+		"What a bloodbath!",
+		"That was exciting!",
+		"What a rush!",
+	]
 	var player_name = player.get_node("AI").name
+	var player_fans = player.get_node("AI").fans
+	var player_haters = player.get_node("AI").haters
 	msgs.append("Ranger " + player_name + " was killed!")
-	if attacker:
+	if (var2str(attacker) != "map"):
 		var attacker_name = attacker.name
+		msgs.append(player_name + " got brutally murdered by " + attacker_name + "! ")
 		var attacker_weapon = attacker.weapon_equipped
-		if attacker_weapon: 
+		if attacker_weapon:
 			var attacker_weapon_name = attacker_weapon.get_node("Info").name
-		msgs.append(player_name + " got brutally murdered by " + attacker_name)
+			if attacker_weapon_name == "long_sword":
+				msgs.append(player_name + " was slashed to death by " + attacker_name + "! ")
+				msgs.append(attacker_name + "cut" + player_name + "to pieces with a sword! ")
+			elif attacker_weapon_name == "arrow":
+				msgs.append(player_name + " got an arrow to the knee! ")
+			elif attacker_weapon_name == "axe":
+				msgs.append(attacker_name + " chopped " + player_name + " like a tree! ")
+				msgs.append(attacker_name + "cut" + player_name + "to pieces with an axe! ")
+			elif attacker_weapon_name == "gun":
+				msgs.append(attacker_name + " shot " + player_name + " with no mercy! ")
+		#Unarmed
+		else:
+			msgs.append(attacker_name + " killed " + player_name + " with his bare hands!! ")
+	#Map killed him
+	else:
+		msgs.append(player_name + " didn't run to safety in time... that's an unlucky Ranger! Haha ")
 	var msg = msgs[randi()%(msgs.size())]
+	#Add first kill intro
+	if player.get_node("AI").map_node.dead_players == 1:
+		var first_kill_intro = first_kill_msgs[randi()%first_kill_msgs.size()]
+		msg = first_kill_intro + msg
+	#Outro
+	if player_fans >= 80 and player_fans > 2*player_haters:
+		msg = msg + lots_of_fans_msgs[randi()%lots_of_fans_msgs.size()]
+	elif player_haters >= 80 and player_haters > 2*player_fans:
+		msg = msg + lots_of_haters_msgs[randi()%lots_of_haters_msgs.size()]
+	else:
+		msg = msg + outro_msgs[randi()%outro_msgs.size()]
 	return msg

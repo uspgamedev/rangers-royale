@@ -47,7 +47,6 @@ func _player_died(player):
 	var blood = BLOOD.instance()
 	blood.set_pos(player.get_parent().get_pos())
 	add_child(blood)
-	dead_players += 1
 	print("hue")
 
 func play_close_zone_sfx():
