@@ -40,10 +40,11 @@ From game-icons.net, licensed under Creative Commons BY 3.0:
 ## Fonts
 
 Under Open Font License:
-+ Orbitron
-+ Exo2
++ Orbitron, by Matt McInerney
++ Exo2, by Natanael Gama
 
 ## Sounds
 
-+ TODO
+From freesound:
++ "boo 1.wav", "cheer 01.wav" by Corsica_S
 
